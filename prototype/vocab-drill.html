@@ -1,0 +1,655 @@
+<title>TOEIC Vocab Drill</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one narrow column, styled like a TOEIC answer sheet. Choices are pencil-filled bubbles; part-of-speech colors act as category tags. */
+:root {
+  --paper: #F3F5F4;
+  --card: #FFFFFF;
+  --ink: #16213A;
+  --muted: #5A6478;
+  --line: #D8DDE3;
+  --sheet: #1E5AA8;          /* answer-sheet print blue: accent */
+  --sheet-soft: #E4ECF7;
+  --pencil: #2A2D33;         /* graphite fill of a marked bubble */
+  --ok: #1D8455; --ok-soft: #E2F3EA;
+  --bad: #C0392F; --bad-soft: #FBE6E3;
+  --hl: #FFF0A8;
+  --c-n: #2F66C9; --c-v: #C8502C; --c-adj: #2E8A4E; --c-adv: #B07A0E;
+  --c-prep: #7A4CC2; --c-conj: #0F8A8A; --c-pron: #C23D7E;
+  --f-display: "Bricolage Grotesque", "IBM Plex Sans Thai", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans Thai", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #0F1420; --card: #171E2C; --ink: #E6EBF3; --muted: #98A2B5; --line: #2A3446;
+  --sheet: #79A7EC; --sheet-soft: #1D2A42; --pencil: #E6EBF3;
+  --ok: #4CC48E; --ok-soft: #133426; --bad: #F07468; --bad-soft: #3A1C1B; --hl: #5A4A10;
+  --c-n: #7FA6F0; --c-v: #F0906E; --c-adj: #6CC88A; --c-adv: #E2B24A;
+  --c-prep: #B394EE; --c-conj: #4CCACA; --c-pron: #EE86B8;
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --paper: #0F1420; --card: #171E2C; --ink: #E6EBF3; --muted: #98A2B5; --line: #2A3446;
+  --sheet: #79A7EC; --sheet-soft: #1D2A42; --pencil: #E6EBF3;
+  --ok: #4CC48E; --ok-soft: #133426; --bad: #F07468; --bad-soft: #3A1C1B; --hl: #5A4A10;
+  --c-n: #7FA6F0; --c-v: #F0906E; --c-adj: #6CC88A; --c-adv: #E2B24A;
+  --c-prep: #B394EE; --c-conj: #4CCACA; --c-pron: #EE86B8;
+  color-scheme: dark; }
+
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.6; }
+.wrap { max-width: 720px; margin: 0 auto; padding-block: 28px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex; flex-direction: column; gap: 22px; }
+h1, h2, h3 { margin: 0; text-wrap: balance; }
+p { margin: 0; }
+button { font: inherit; color: inherit; cursor: pointer; }
+button:focus-visible, summary:focus-visible { outline: 2px solid var(--sheet); outline-offset: 2px; }
+.mono { font-family: var(--f-mono); }
+.label { font-family: var(--f-mono); font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+
+/* ---------- header ---------- */
+.brand { display: flex; align-items: end; justify-content: space-between; gap: 12px; flex-wrap: wrap; border-bottom: 2px solid var(--ink); padding-bottom: 14px; }
+.brand h1 { font-family: var(--f-display); font-weight: 800; font-size: clamp(30px, 6vw, 42px); letter-spacing: -0.02em; line-height: 1; }
+.brand h1 span { color: var(--sheet); }
+.brand p { color: var(--muted); font-size: 14px; }
+
+/* ---------- home panels ---------- */
+.panel { display: flex; flex-direction: column; gap: 12px; }
+.panel-head { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.panel-head h2 { font-size: 17px; font-weight: 700; }
+
+.boxes { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: 6px; }
+.box { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 10px 8px 8px; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.box b { font-family: var(--f-display); font-size: 24px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.box small { font-size: 11.5px; color: var(--muted); line-height: 1.3; }
+.box .pip { height: 4px; border-radius: 2px; background: var(--line); overflow: hidden; margin-top: 6px; }
+.box .pip i { display: block; height: 100%; background: var(--sheet); }
+.box.b0 .pip i { background: var(--muted); }
+.box.b5 { border-color: var(--ok); } .box.b5 .pip i { background: var(--ok); }
+@media (max-width: 480px) { .boxes { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+
+.modes { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px; }
+@media (max-width: 520px) { .modes { grid-template-columns: 1fr; } }
+.mode { text-align: left; background: var(--card); border: 1.5px solid var(--line); border-radius: 10px; padding: 12px 14px; display: grid; grid-template-columns: auto 1fr; gap: 2px 12px; align-items: start; }
+.mode .bub { grid-row: span 2; margin-top: 2px; }
+.mode strong { font-size: 15px; }
+.mode span.d { font-size: 13px; color: var(--muted); line-height: 1.45; }
+.mode[aria-pressed="true"] { border-color: var(--sheet); background: var(--sheet-soft); }
+.mode[aria-pressed="true"] .bub { background: var(--pencil); border-color: var(--pencil); color: var(--card); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { border: 1.5px solid var(--line); background: var(--card); border-radius: 999px; padding: 6px 14px; font-size: 14px; display: inline-flex; gap: 8px; align-items: center; }
+.chip em { font-style: normal; font-family: var(--f-mono); font-size: 12px; color: var(--muted); }
+.chip[aria-pressed="true"] { border-color: var(--sheet); background: var(--sheet); color: var(--card); }
+.chip[aria-pressed="true"] em { color: inherit; opacity: .8; }
+
+.startrow { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; justify-content: space-between; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
+.len { display: flex; gap: 6px; align-items: center; }
+.len button { border: 1.5px solid var(--line); background: transparent; border-radius: 8px; padding: 4px 12px; font-family: var(--f-mono); font-size: 13px; }
+.len button[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--card); }
+.btn { border: 0; border-radius: 10px; padding: 12px 22px; font-weight: 700; font-size: 15px; background: var(--sheet); color: var(--card); display: inline-flex; align-items: center; gap: 10px; }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.btn.ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--line); }
+.btn kbd { font-family: var(--f-mono); font-size: 11px; border: 1px solid currentColor; border-radius: 4px; padding: 0 5px; opacity: .75; font-weight: 600; }
+
+details.info { background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+details.info summary { cursor: pointer; padding: 14px 16px; font-weight: 700; list-style: none; display: flex; justify-content: space-between; gap: 10px; }
+details.info summary::-webkit-details-marker { display: none; }
+details.info summary::after { content: "+"; font-family: var(--f-mono); color: var(--muted); }
+details.info[open] summary::after { content: "–"; }
+details.info .body { padding: 0 16px 16px; display: flex; flex-direction: column; gap: 12px; }
+.flow { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; counter-reset: s; }
+.flow li { display: grid; grid-template-columns: 28px 1fr; gap: 10px; counter-increment: s; }
+.flow li::before { content: counter(s); width: 24px; height: 24px; border-radius: 50%; border: 1.5px solid var(--sheet); color: var(--sheet); font-family: var(--f-mono); font-size: 12px; font-weight: 600; display: grid; place-items: center; }
+.flow li p { color: var(--muted); font-size: 14px; }
+.flow li b { color: var(--ink); }
+.tbl-wrap { overflow-x: auto; }
+table.suf { border-collapse: collapse; width: 100%; font-size: 14px; }
+table.suf th, table.suf td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+table.suf th { font-family: var(--f-mono); font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+table.suf td.sx { font-family: var(--f-mono); font-size: 13px; }
+.note { font-size: 13.5px; color: var(--muted); }
+
+/* ---------- POS tag ---------- */
+.tag { display: inline-flex; align-items: center; gap: 4px; font-family: var(--f-mono); font-size: 11.5px; font-weight: 600; border-radius: 4px; padding: 1px 6px; border: 1px solid currentColor; letter-spacing: .02em; white-space: nowrap; }
+.t-n { color: var(--c-n); } .t-v { color: var(--c-v); } .t-adj { color: var(--c-adj); } .t-adv { color: var(--c-adv); }
+.t-prep { color: var(--c-prep); } .t-conj { color: var(--c-conj); } .t-pron { color: var(--c-pron); }
+
+/* ---------- bubbles (answer sheet) ---------- */
+.bub { width: 28px; height: 28px; flex: none; border-radius: 50%; border: 1.5px solid var(--muted); display: grid; place-items: center; font-family: var(--f-mono); font-size: 12px; font-weight: 600; color: var(--muted); transition: background .15s, border-color .15s; }
+
+/* ---------- quiz ---------- */
+.qbar { display: flex; align-items: center; gap: 12px; }
+.qbar .track { flex: 1; height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
+.qbar .track i { display: block; height: 100%; background: var(--sheet); transition: width .3s; }
+.qbar .count { font-family: var(--f-mono); font-size: 13px; font-variant-numeric: tabular-nums; color: var(--muted); white-space: nowrap; }
+.qbar .quit { background: none; border: 0; color: var(--muted); font-size: 13px; text-decoration: underline; text-underline-offset: 3px; padding: 4px; }
+
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 22px clamp(16px, 4vw, 28px) 24px; display: flex; flex-direction: column; gap: 20px; box-shadow: 0 1px 0 var(--line); }
+.card-meta { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; align-items: center; }
+.steps { display: flex; gap: 6px; align-items: center; font-family: var(--f-mono); font-size: 11.5px; color: var(--muted); }
+.steps span { padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line); }
+.steps span.on { border-color: var(--sheet); color: var(--sheet); }
+.steps span.done { background: var(--line); border-color: var(--line); color: var(--ink); }
+.retry { font-family: var(--f-mono); font-size: 11.5px; color: var(--bad); }
+.word { font-family: var(--f-display); font-weight: 700; font-size: clamp(40px, 11vw, 68px); letter-spacing: -0.025em; line-height: 1; overflow-wrap: anywhere; }
+.sentence { font-size: clamp(18px, 4.4vw, 22px); line-height: 1.55; font-weight: 500; }
+.sentence .blank { display: inline-block; min-width: 5.5em; border-bottom: 2px solid var(--ink); text-align: center; color: var(--sheet); font-weight: 700; }
+
+.step { display: flex; flex-direction: column; gap: 10px; }
+.prompt { font-weight: 600; font-size: 15px; display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.prompt small { font-weight: 400; color: var(--muted); font-size: 12.5px; }
+.posgrid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 8px; }
+@media (max-width: 560px) { .posgrid { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+.opts { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px; }
+@media (max-width: 560px) { .opts { grid-template-columns: 1fr; } }
+
+.opt { position: relative; text-align: left; background: var(--card); border: 1.5px solid var(--line); border-radius: 10px; padding: 10px 12px; display: flex; gap: 10px; align-items: center; min-width: 0; transition: border-color .15s, background .15s; }
+.opt:hover:not(:disabled) { border-color: var(--ink); }
+.opt:hover:not(:disabled) .bub { border-color: var(--ink); color: var(--ink); }
+.opt:disabled { cursor: default; }
+.opt .txt { display: flex; flex-direction: column; min-width: 0; line-height: 1.3; }
+.opt .txt b { font-weight: 600; font-size: 15px; }
+.opt .txt small { color: var(--muted); font-size: 12px; }
+.opt .txt .en { font-family: var(--f-display); font-size: 18px; font-weight: 700; letter-spacing: -0.01em; }
+.opt .side { margin-left: auto; }
+.opt.pos-opt .bub { font-size: 11px; }
+.opt.picked .bub { background: var(--pencil); border-color: var(--pencil); color: var(--card); }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .bub { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); }
+.opt.wrong .bub { background: var(--bad); border-color: var(--bad); color: var(--card); }
+.opt.dim { opacity: .5; }
+
+.verdict { font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.verdict.ok { color: var(--ok); } .verdict.bad { color: var(--bad); }
+
+.reveal { border-top: 1px dashed var(--line); padding-top: 18px; display: flex; flex-direction: column; gap: 14px; }
+.reveal .row { display: grid; grid-template-columns: 108px 1fr; gap: 12px; align-items: baseline; }
+@media (max-width: 480px) { .reveal .row { grid-template-columns: 1fr; gap: 4px; } }
+.reveal .row > div { min-width: 0; }
+.reveal .ans { font-size: 17px; font-weight: 600; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.reveal .ex { font-size: 15px; }
+.reveal .ex mark { background: var(--hl); color: inherit; padding: 0 3px; border-radius: 3px; font-weight: 600; }
+.clue { font-size: 14px; }
+.clue.warn { color: var(--bad); }
+.clue .sx { font-family: var(--f-mono); font-weight: 600; background: var(--sheet-soft); color: var(--sheet); border-radius: 4px; padding: 0 5px; }
+.fam { display: flex; flex-wrap: wrap; gap: 6px 14px; }
+.fam span { display: inline-flex; gap: 6px; align-items: center; }
+.fam span.me { font-weight: 700; }
+.tip { font-size: 14px; background: var(--sheet-soft); border-radius: 8px; padding: 10px 12px; }
+
+.nextrow { display: flex; justify-content: flex-end; }
+
+/* ---------- summary ---------- */
+.score { display: flex; gap: 18px; align-items: end; flex-wrap: wrap; }
+.score .big { font-family: var(--f-display); font-weight: 800; font-size: 64px; line-height: .9; font-variant-numeric: tabular-nums; }
+.score .big small { font-size: 28px; color: var(--muted); font-weight: 700; }
+.reslist { display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--line); border-radius: 12px; }
+.res { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 2fr) auto; gap: 12px; padding: 10px 14px; border-bottom: 1px solid var(--line); align-items: center; }
+.res:last-child { border-bottom: 0; }
+.res .w { font-family: var(--f-display); font-weight: 700; font-size: 17px; overflow-wrap: anywhere; }
+.res .m { font-size: 13.5px; color: var(--muted); }
+.res .marks { display: flex; gap: 6px; font-family: var(--f-mono); font-size: 12px; }
+.mk { border-radius: 4px; padding: 1px 6px; }
+.mk.y { background: var(--ok-soft); color: var(--ok); } .mk.x { background: var(--bad-soft); color: var(--bad); }
+@media (max-width: 480px) { .res { grid-template-columns: 1fr auto; } .res .m { grid-column: 1 / -1; grid-row: 2; } }
+.btnrow { display: flex; gap: 10px; flex-wrap: wrap; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+@keyframes pop { from { transform: translateY(4px); opacity: .6; } to { transform: none; opacity: 1; } }
+.appear { animation: pop .22s ease-out; }
+</style>
+
+<div class="wrap" id="app"></div>
+
+<script>
+// ---------------- data ----------------
+const POS = [
+  { k: "n",    en: "Noun",        th: "คำนาม" },
+  { k: "v",    en: "Verb",        th: "คำกริยา" },
+  { k: "adj",  en: "Adjective",   th: "คุณศัพท์" },
+  { k: "adv",  en: "Adverb",      th: "กริยาวิเศษณ์" },
+  { k: "prep", en: "Preposition", th: "บุพบท" },
+  { k: "conj", en: "Conjunction", th: "คำสันธาน" },
+  { k: "pron", en: "Pronoun",     th: "สรรพนาม" },
+];
+const POSMAP = Object.fromEntries(POS.map(p => [p.k, p]));
+
+const DECKS = [
+  { k: "office",    th: "ออฟฟิศ" },
+  { k: "finance",   th: "การเงิน" },
+  { k: "hr",        th: "บุคคล / HR" },
+  { k: "travel",    th: "เดินทาง" },
+  { k: "marketing", th: "การตลาด" },
+  { k: "grammar",   th: "คำเชื่อม & บุพบท" },
+];
+
+// w: word, p: parts of speech, th: Thai meaning, ex: example, f: word family [form, pos], g: synonym group (not used as distractors for each other), tip
+const WORDS = [
+  // office
+  { d:"office", w:"attendance", p:["n"], th:"การเข้าร่วม", ex:"Attendance at the safety workshop is mandatory for all staff.", f:[["attend","v"],["attendee","n"],["attentive","adj"]] },
+  { d:"office", w:"mandatory", p:["adj"], th:"ที่บังคับ, ต้องทำ", ex:"Safety training is mandatory for new employees.", f:[["mandate","n"],["mandatorily","adv"]] },
+  { d:"office", w:"postpone", p:["v"], th:"เลื่อนออกไป", ex:"We had to postpone the product launch until May." },
+  { d:"office", w:"punctual", p:["adj"], th:"ตรงต่อเวลา", ex:"Ms. Lee is always punctual for client meetings.", f:[["punctually","adv"],["punctuality","n"]] },
+  { d:"office", w:"colleague", p:["n"], th:"เพื่อนร่วมงาน", ex:"Please share the report with your colleague in accounting." },
+  { d:"office", w:"supervise", p:["v"], th:"ควบคุมดูแล", ex:"Mr. Park will supervise the new interns this summer.", f:[["supervisor","n"],["supervision","n"],["supervisory","adj"]] },
+  { d:"office", w:"efficiently", p:["adv"], th:"อย่างมีประสิทธิภาพ", ex:"The new software helps us process orders more efficiently.", f:[["efficient","adj"],["efficiency","n"]] },
+  { d:"office", w:"submit", p:["v"], th:"ยื่น, ส่ง (เอกสาร)", ex:"Please submit your expense report by Friday.", f:[["submission","n"]] },
+  { d:"office", w:"temporarily", p:["adv"], th:"ชั่วคราว", ex:"The east entrance is temporarily closed for repairs.", f:[["temporary","adj"]] },
+  { d:"office", w:"announcement", p:["n"], th:"การประกาศ, คำประกาศ", ex:"The CEO made an announcement about the merger.", f:[["announce","v"],["announcer","n"]] },
+  { d:"office", w:"equipment", p:["n"], th:"อุปกรณ์", ex:"All office equipment must be returned before you leave.", f:[["equip","v"],["equipped","adj"]] },
+  { d:"office", w:"confidential", p:["adj"], th:"เป็นความลับ", ex:"Client records are strictly confidential.", f:[["confidentiality","n"],["confidentially","adv"]] },
+  // finance
+  { d:"finance", w:"invoice", p:["n"], th:"ใบแจ้งหนี้", ex:"The invoice must be paid within 30 days." },
+  { d:"finance", w:"reimburse", p:["v"], th:"จ่ายเงินคืน, ชดใช้เงิน", ex:"The company will reimburse you for travel expenses.", f:[["reimbursement","n"]] },
+  { d:"finance", w:"revenue", p:["n"], th:"รายได้", ex:"Annual revenue rose by 12 percent last year." },
+  { d:"finance", w:"budget", p:["n","v"], th:"งบประมาณ", ex:"The marketing budget was cut in half." },
+  { d:"finance", w:"profitable", p:["adj"], th:"ทำกำไร, มีกำไร", ex:"The new branch became profitable within a year.", f:[["profit","n"],["profitability","n"],["profitably","adv"]] },
+  { d:"finance", w:"expenditure", p:["n"], th:"รายจ่าย, การใช้จ่าย", ex:"We need to reduce our expenditure on office supplies.", f:[["expend","v"]] },
+  { d:"finance", w:"approximately", p:["adv"], th:"ประมาณ", ex:"The renovation will take approximately three weeks.", f:[["approximate","adj"],["approximation","n"]] },
+  { d:"finance", w:"substantial", p:["adj"], th:"จำนวนมาก, อย่างมาก", ex:"The firm received a substantial increase in orders.", f:[["substantially","adv"],["substance","n"]] },
+  { d:"finance", w:"audit", p:["n","v"], th:"การตรวจสอบบัญชี", ex:"An external audit is conducted every spring.", f:[["auditor","n"]] },
+  { d:"finance", w:"fiscal", p:["adj"], th:"เกี่ยวกับการคลัง, ปีงบประมาณ", ex:"Sales targets for the next fiscal year have been set." },
+  { d:"finance", w:"deduct", p:["v"], th:"หัก (เงิน)", ex:"The bank will deduct a small fee from your account.", f:[["deduction","n"],["deductible","adj"]] },
+  { d:"finance", w:"financially", p:["adv"], th:"ในทางการเงิน", ex:"The expansion plan is not financially feasible this year.", f:[["finance","n"],["financial","adj"]] },
+  // hr
+  { d:"hr", w:"applicant", p:["n"], th:"ผู้สมัคร", ex:"Each applicant must provide two references.", f:[["apply","v"],["applicable","adj"]] },
+  { d:"hr", w:"qualified", p:["adj"], th:"มีคุณสมบัติเหมาะสม", ex:"We are looking for a qualified accountant.", f:[["qualify","v"],["qualification","n"]] },
+  { d:"hr", w:"recruit", p:["v"], th:"สรรหา, รับคนเข้าทำงาน", ex:"The firm plans to recruit ten engineers this year.", f:[["recruitment","n"],["recruiter","n"]] },
+  { d:"hr", w:"promotion", p:["n"], th:"การเลื่อนตำแหน่ง; การส่งเสริมการขาย", ex:"Ms. Tanaka received a promotion to sales director.", f:[["promote","v"],["promotional","adj"]] },
+  { d:"hr", w:"resign", p:["v"], th:"ลาออก", ex:"Mr. Silva decided to resign after twenty years with the firm.", f:[["resignation","n"]] },
+  { d:"hr", w:"evaluate", p:["v"], th:"ประเมิน", ex:"Managers evaluate staff performance twice a year.", f:[["evaluation","n"],["evaluator","n"]] },
+  { d:"hr", w:"retirement", p:["n"], th:"การเกษียณอายุ", ex:"A party was held to celebrate her retirement.", f:[["retire","v"],["retired","adj"]] },
+  { d:"hr", w:"experienced", p:["adj"], th:"มีประสบการณ์", ex:"Only experienced drivers may operate the forklift.", f:[["experience","n"]] },
+  { d:"hr", w:"responsibility", p:["n"], th:"ความรับผิดชอบ", ex:"Training new staff is the manager's responsibility.", f:[["responsible","adj"],["responsibly","adv"]] },
+  { d:"hr", w:"orientation", p:["n"], th:"การปฐมนิเทศ", ex:"New hires attend a two-day orientation.", f:[["orient","v"]] },
+  { d:"hr", w:"eligible", p:["adj"], th:"มีสิทธิ์, เข้าเกณฑ์", ex:"Full-time employees are eligible for health benefits.", f:[["eligibility","n"]] },
+  { d:"hr", w:"thoroughly", p:["adv"], th:"อย่างละเอียดถี่ถ้วน", ex:"Please read the contract thoroughly before signing.", f:[["thorough","adj"],["thoroughness","n"]] },
+  // travel
+  { d:"travel", w:"itinerary", p:["n"], th:"กำหนดการเดินทาง", ex:"Your travel itinerary has been sent by e-mail." },
+  { d:"travel", w:"accommodation", p:["n"], th:"ที่พัก", ex:"The conference fee includes accommodation and meals.", f:[["accommodate","v"]] },
+  { d:"travel", w:"depart", p:["v"], th:"ออกเดินทาง", ex:"The shuttle bus will depart from the hotel at 7 A.M.", f:[["departure","n"]] },
+  { d:"travel", w:"reservation", p:["n"], th:"การจอง", ex:"I'd like to make a reservation for four people.", f:[["reserve","v"],["reserved","adj"]] },
+  { d:"travel", w:"baggage", p:["n"], th:"สัมภาระ, กระเป๋าเดินทาง", ex:"Passengers may carry one piece of baggage on board." },
+  { d:"travel", w:"complimentary", p:["adj"], th:"ฟรี, ให้โดยไม่คิดเงิน", ex:"All guests receive a complimentary breakfast.", tip:"อย่าสับสนกับ complementary (ที่เสริมกัน) ใน TOEIC complimentary = ฟรี เจอบ่อยมาก" },
+  { d:"travel", w:"destination", p:["n"], th:"จุดหมายปลายทาง", ex:"Kyoto is a popular destination for tourists." },
+  { d:"travel", w:"conveniently", p:["adv"], th:"อย่างสะดวก", ex:"The hotel is conveniently located near the station.", f:[["convenient","adj"],["convenience","n"]] },
+  { d:"travel", w:"fare", p:["n"], th:"ค่าโดยสาร", ex:"The bus fare will increase next month." },
+  { d:"travel", w:"renovate", p:["v"], th:"ปรับปรุง, บูรณะ (อาคาร)", ex:"The city plans to renovate the old train station.", f:[["renovation","n"]] },
+  { d:"travel", w:"spacious", p:["adj"], th:"กว้างขวาง", ex:"All rooms are spacious and quiet.", f:[["space","n"],["spaciously","adv"]] },
+  { d:"travel", w:"nearby", p:["adj","adv"], th:"ใกล้เคียง, แถวนี้", ex:"There are several restaurants nearby.", tip:"ใช้ได้ทั้ง adjective (a nearby café) และ adverb (restaurants nearby)" },
+  // marketing
+  { d:"marketing", w:"competitor", p:["n"], th:"คู่แข่ง", ex:"Our main competitor lowered its prices last week.", f:[["compete","v"],["competitive","adj"],["competitively","adv"]] },
+  { d:"marketing", w:"advertise", p:["v"], th:"โฆษณา", ex:"We advertise our products on social media.", f:[["advertisement","n"],["advertiser","n"]] },
+  { d:"marketing", w:"innovative", p:["adj"], th:"เป็นนวัตกรรม, ล้ำสมัย", ex:"The company is known for its innovative designs.", f:[["innovate","v"],["innovation","n"]] },
+  { d:"marketing", w:"survey", p:["n","v"], th:"แบบสำรวจ, การสำรวจ", ex:"Customers were asked to complete a short survey." },
+  { d:"marketing", w:"demand", p:["n","v"], th:"ความต้องการ (ของตลาด); เรียกร้อง", ex:"Demand for electric cars is growing." },
+  { d:"marketing", w:"exclusively", p:["adv"], th:"เฉพาะ, แต่เพียงผู้เดียว", ex:"This offer is available exclusively to members.", f:[["exclusive","adj"],["exclude","v"]] },
+  { d:"marketing", w:"launch", p:["v","n"], th:"เปิดตัว (สินค้า)", ex:"The company will launch a new smartphone in June." },
+  { d:"marketing", w:"persuasive", p:["adj"], th:"ที่โน้มน้าวใจ", ex:"She gave a persuasive presentation to the investors.", f:[["persuade","v"],["persuasion","n"]] },
+  { d:"marketing", w:"consumer", p:["n"], th:"ผู้บริโภค", ex:"Every consumer has the right to a refund.", f:[["consume","v"],["consumption","n"]] },
+  { d:"marketing", w:"increasingly", p:["adv"], th:"มากขึ้นเรื่อยๆ", ex:"Online shopping is increasingly popular.", f:[["increase","v"],["increasing","adj"]] },
+  { d:"marketing", w:"affordable", p:["adj"], th:"ราคาที่จ่ายไหว, ไม่แพง", ex:"We offer high-quality products at affordable prices.", f:[["afford","v"],["affordability","n"]] },
+  { d:"marketing", w:"strategy", p:["n"], th:"กลยุทธ์", ex:"The team developed a new marketing strategy.", f:[["strategic","adj"],["strategically","adv"]] },
+  // grammar / function words
+  { d:"grammar", w:"despite", p:["prep"], g:"concede", th:"แม้ว่า, ทั้งๆ ที่ (+ คำนาม)", ex:"Despite the heavy rain, the outdoor event continued.", tip:"despite + คำนาม / V-ing เท่านั้น ถ้าตามด้วยประโยค (S + V) ต้องใช้ although" },
+  { d:"grammar", w:"although", p:["conj"], g:"concede", th:"แม้ว่า (+ ประโยค)", ex:"Although sales were low, the store stayed open.", tip:"although + ประโยค (S + V) ส่วน despite / in spite of + คำนาม" },
+  { d:"grammar", w:"in spite of", p:["prep"], g:"concede", th:"แม้ว่า, ทั้งๆ ที่ (+ คำนาม)", ex:"In spite of the delay, the project stayed on budget.", tip:"ความหมายเหมือน despite ใช้กับคำนามเหมือนกัน" },
+  { d:"grammar", w:"regarding", p:["prep"], th:"เกี่ยวกับ", ex:"Please contact us regarding any billing questions.", tip:"ลงท้าย -ing แต่ทำหน้าที่เป็น preposition (= about)" },
+  { d:"grammar", w:"throughout", p:["prep"], th:"ตลอด (ช่วงเวลา), ทั่ว (บริเวณ)", ex:"Prices remained stable throughout the year." },
+  { d:"grammar", w:"unless", p:["conj"], th:"เว้นแต่, ถ้าไม่", ex:"Refunds are not given unless a receipt is shown.", tip:"unless = if ... not ห้ามใช้ not ซ้อนในประโยคเดียวกัน" },
+  { d:"grammar", w:"whereas", p:["conj"], th:"ในขณะที่ (เปรียบเทียบความต่าง)", ex:"Sales rose in Asia, whereas they fell in Europe." },
+  { d:"grammar", w:"prior to", p:["prep"], th:"ก่อน", ex:"Please arrive 15 minutes prior to your appointment.", tip:"prior to = before แต่เป็นภาษาทางการ พบบ่อยในอีเมลธุรกิจ" },
+  { d:"grammar", w:"due to", p:["prep"], th:"เนื่องจาก", ex:"The flight was delayed due to bad weather.", tip:"due to + คำนาม ถ้าตามด้วยประโยคใช้ because" },
+  { d:"grammar", w:"whoever", p:["pron"], th:"ใครก็ตามที่", ex:"Whoever finishes the report first can leave early." },
+  { d:"grammar", w:"themselves", p:["pron"], th:"ตัวพวกเขาเอง", ex:"The interns organized the event themselves.", tip:"reflexive pronoun ใช้เมื่อประธานกับกรรมเป็นคนเดียวกัน หรือเน้นว่าทำเอง" },
+  { d:"grammar", w:"whose", p:["pron"], th:"ซึ่ง...ของ (แสดงความเป็นเจ้าของ)", ex:"We hired a designer whose work has won several awards.", tip:"relative pronoun แสดงความเป็นเจ้าของ ตามด้วยคำนามเสมอ (whose work)" },
+  { d:"grammar", w:"each other", p:["pron"], th:"ซึ่งกันและกัน", ex:"Team members should support each other." },
+  { d:"grammar", w:"however", p:["adv"], g:"however", th:"อย่างไรก็ตาม", ex:"Sales were strong; however, profits fell.", tip:"however เป็น adverb ไม่ใช่ conjunction จะเชื่อมสองประโยคต้องมี ; หรือขึ้นประโยคใหม่" },
+  { d:"grammar", w:"nevertheless", p:["adv"], g:"however", th:"ถึงกระนั้น, อย่างไรก็ตาม", ex:"The task was difficult; nevertheless, the team finished on time.", tip:"กับดักบ่อย: ดูเหมือนคำเชื่อม แต่เป็น adverb เหมือน however" },
+  { d:"grammar", w:"once", p:["conj","adv"], th:"ทันทีที่, เมื่อ...แล้ว", ex:"Once the payment is received, we will ship your order.", tip:"ใน TOEIC มักเป็น conjunction (+ ประโยค) แต่ใช้เป็น adverb ได้ด้วย (= ครั้งหนึ่ง)" },
+  { d:"grammar", w:"so that", p:["conj"], th:"เพื่อที่จะ (+ ประโยค)", ex:"Please speak clearly so that everyone can hear you." },
+  { d:"grammar", w:"beneath", p:["prep"], th:"ใต้, ข้างใต้", ex:"Please sign your name beneath the line." },
+  { d:"grammar", w:"besides", p:["prep","adv"], th:"นอกจาก...แล้ว", ex:"Besides a good salary, the job offers flexible hours.", tip:"อย่าสับสนกับ beside (ไม่มี s) = ข้างๆ" },
+];
+
+// suffix rules: what an ending usually signals
+const SUFFIX = [
+  ["tion","n","action"],["sion","n","decision"],["ment","n","agreement"],["ness","n","awareness"],["ity","n","ability"],
+  ["ance","n","performance"],["ence","n","reference"],["ure","n","failure"],["age","n","storage"],
+  ["ee","n","employee"],["er","n","manager"],["or","n","director"],["ant","n","assistant"],["ist","n","analyst"],
+  ["ive","adj","effective"],["ous","adj","various"],["able","adj","available"],["ible","adj","flexible"],["ful","adj","successful"],
+  ["less","adj","careless"],["ial","adj","official"],["al","adj","annual"],["ic","adj","economic"],["ary","adj","necessary"],
+  ["ory","adj","advisory"],["ent","adj","efficient"],["ed","adj","detailed"],
+  ["ly","adv","quickly"],
+  ["ize","v","organize"],["ise","v","advertise"],["ate","v","indicate"],["ify","v","clarify"],
+].sort((a, b) => b[0].length - a[0].length);
+
+const MODES = [
+  { k: "full",  th: "ประเภทคำ + ความหมาย", d: "เดาประเภทคำก่อน แล้วเลือกความหมาย แนะนำสำหรับคำใหม่", steps: ["pos","meaning"] },
+  { k: "pos",   th: "ประเภทคำอย่างเดียว",  d: "เร็ว ฝึกดูคำลงท้าย เตรียมข้อ word form", steps: ["pos"] },
+  { k: "meaning", th: "ความหมายอย่างเดียว", d: "เห็นคำ เลือกความหมายภาษาไทย 4 ตัวเลือก", steps: ["meaning"] },
+  { k: "part5", th: "เติมคำ (สไตล์ Part 5)", d: "ประโยคมีช่องว่าง เลือกรูปคำที่ถูก เช่น attend / attendance / attendee", steps: ["part5"] },
+];
+
+// ---------------- storage (per device, optional) ----------------
+const KEY = "toeic-vocab-drill:v1";
+function load() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } }
+function save() { try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) {} }
+const store = Object.assign({ boxes: {}, mode: "full", decks: ["office","finance","hr","travel","marketing","grammar"], len: 10 }, load());
+const boxOf = w => store.boxes[w] || 0;
+
+// ---------------- helpers ----------------
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]));
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const tag = k => `<span class="tag t-${k}">${k}.</span>`;
+const wordRe = w => new RegExp("\\b" + w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b", "i");
+const part5Ok = x => x.f && x.f.length >= 2 && wordRe(x.w).test(x.ex);
+
+function suffixClue(x) {
+  if (x.d === "grammar" || x.w.includes(" ")) return null;
+  const r = SUFFIX.find(([s]) => x.w.toLowerCase().endsWith(s));
+  if (!r) return { html: "คำนี้ไม่มีคำลงท้ายที่ช่วยบอกประเภท ต้องจำจากการใช้ในประโยค", warn: false };
+  const [s, pos, sample] = r;
+  if (x.p.includes(pos)) return { html: `ลงท้ายด้วย <span class="sx">-${s}</span> มักเป็น <b>${POSMAP[pos].en}</b> เหมือน ${sample}`, warn: false };
+  return { html: `ระวัง: <span class="sx">-${s}</span> ปกติเป็น ${POSMAP[pos].en} แต่ <b>${esc(x.w)}</b> เป็น <b>${x.p.map(p => POSMAP[p].en).join(" / ")}</b> ข้อนี้เป็นข้อยกเว้น ต้องจำ`, warn: true };
+}
+
+function meaningChoices(x) {
+  const pool = WORDS.filter(o => o !== x && !(x.g && o.g === x.g) && o.th !== x.th);
+  const same = shuffle(pool.filter(o => o.p.some(p => x.p.includes(p))));
+  const other = shuffle(pool.filter(o => !o.p.some(p => x.p.includes(p))));
+  const picks = [];
+  for (const o of [...same, ...other]) { if (picks.length === 3) break; if (!picks.some(p => p.th === o.th)) picks.push(o); }
+  return shuffle([x, ...picks]).map(o => ({ th: o.th, ok: o === x }));
+}
+function part5Choices(x) {
+  return shuffle([[x.w, x.p[0], true], ...shuffle(x.f).slice(0, 3).map(([w, p]) => [w, p, false])]);
+}
+
+// ---------------- state ----------------
+let S = { view: "home" };
+
+function poolFor(mode, decks) {
+  return WORDS.filter(x => decks.includes(x.d) && (mode !== "part5" || part5Ok(x)));
+}
+function startSession(words) {
+  const mode = MODES.find(m => m.k === store.mode);
+  let list = words;
+  if (!list) {
+    // lower Leitner boxes first, random within a box
+    list = shuffle(poolFor(store.mode, store.decks)).sort((a, b) => boxOf(a.w) - boxOf(b.w)).slice(0, store.len);
+  }
+  S = { view: "quiz", mode, queue: shuffle(list).map(x => makeCard(x, false)), i: 0, results: new Map() };
+  renderQuiz();
+}
+function makeCard(x, retry) {
+  return { x, retry, stepIdx: 0, pos: null, meaning: null, part5: null,
+    mChoices: meaningChoices(x), pChoices: x.f ? part5Choices(x) : null };
+}
+
+// ---------------- views ----------------
+function renderHome() {
+  S = { view: "home" };
+  const counts = [0,0,0,0,0,0]; WORDS.forEach(x => counts[Math.min(5, boxOf(x.w))]++);
+  const boxNames = ["ยังไม่เคยเห็น","กล่อง 1 ทวนบ่อย","กล่อง 2","กล่อง 3","กล่อง 4","กล่อง 5 จำแม่น"];
+  const avail = poolFor(store.mode, store.decks).length;
+  $("#app").innerHTML = `
+    <header class="brand">
+      <div><p class="label">TOEIC · Vocabulary</p><h1>Vocab <span>Drill</span></h1></div>
+      <p>${WORDS.length} คำศัพท์ที่ออกบ่อย · 6 หมวด</p>
+    </header>
+
+    <section class="panel">
+      <div class="panel-head"><h2>ความคืบหน้า</h2><span class="label">Leitner 5 กล่อง</span></div>
+      <div class="boxes">${counts.map((c, i) => `
+        <div class="box b${i}"><b>${c}</b><small>${boxNames[i]}</small><div class="pip"><i style="width:${(c / WORDS.length * 100).toFixed(1)}%"></i></div></div>`).join("")}
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><h2>เลือกโหมด</h2></div>
+      <div class="modes">${MODES.map((m, i) => `
+        <button class="mode" id="mode-${m.k}" data-mode="${m.k}" aria-pressed="${store.mode === m.k}">
+          <span class="bub">${"ABCD"[i]}</span><strong>${m.th}</strong><span class="d">${m.d}</span>
+        </button>`).join("")}
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><h2>หมวดคำศัพท์</h2><button class="chip" id="deck-all" data-all="1">เลือกทั้งหมด</button></div>
+      <div class="chips">${DECKS.map(d => {
+        const n = poolFor(store.mode, [d.k]).length;
+        return `<button class="chip" id="deck-${d.k}" data-deck="${d.k}" aria-pressed="${store.decks.includes(d.k)}" ${n ? "" : "disabled"}>${d.th}<em>${n}</em></button>`;
+      }).join("")}</div>
+    </section>
+
+    <div class="startrow">
+      <div class="len"><span class="label">ต่อรอบ</span>${[10, 20, 30].map(n => `<button id="len-${n}" data-len="${n}" aria-pressed="${store.len === n}">${n}</button>`).join("")}</div>
+      <button class="btn" id="start" ${avail ? "" : "disabled"}>เริ่มฝึก ${Math.min(avail, store.len)} คำ <kbd>Enter</kbd></button>
+    </div>
+
+    <details class="info" id="how">
+      <summary>วิธีเรียนในแอปนี้</summary>
+      <div class="body">
+        <ol class="flow">
+          <li><div><b>เดาประเภทคำก่อน</b><p>ข้อสอบ Part 5 มีข้อเลือกรูปคำ (word form) เยอะมาก ถ้ารู้ว่าตำแหน่งนั้นต้องการ noun หรือ adverb ก็ตอบได้แม้ไม่รู้ความหมาย</p></div></li>
+          <li><div><b>แล้วค่อยเลือกความหมาย</b><p>ตัวเลือกหลอกส่วนใหญ่เป็นคำประเภทเดียวกัน จะได้ไม่เดาจากชนิดคำ</p></div></li>
+          <li><div><b>อ่านเฉลยทุกครั้ง</b><p>ดูเบาะแสจากคำลงท้าย ข้อยกเว้น ประโยคตัวอย่างแบบ TOEIC และ word family ของคำนั้น</p></div></li>
+          <li><div><b>ผิดแล้ววนกลับมา</b><p>คำที่ตอบผิดจะกลับมาอีกครั้งท้ายรอบเดียวกัน และตกไปอยู่กล่อง 1</p></div></li>
+          <li><div><b>ระบบกล่อง Leitner</b><p>ตอบถูกครบ คำขยับขึ้นหนึ่งกล่อง ตอบผิดกลับไปกล่อง 1 รอบใหม่จะดึงคำจากกล่องต่ำก่อน คำในกล่อง 5 คือคำที่จำแม่นแล้ว</p></div></li>
+        </ol>
+        <p class="note">ความคืบหน้าบันทึกไว้ในเบราว์เซอร์เครื่องนี้เท่านั้น</p>
+      </div>
+    </details>
+
+    <details class="info" id="sufsheet">
+      <summary>สรุปคำลงท้าย บอกประเภทคำ</summary>
+      <div class="body">
+        <div class="tbl-wrap"><table class="suf">
+          <thead><tr><th>ประเภท</th><th>คำลงท้ายที่เจอบ่อย</th><th>ตัวอย่าง</th></tr></thead>
+          <tbody>
+            <tr><td>${tag("n")}</td><td class="sx">-tion -sion -ment -ness -ity -ance -ence -ure -age</td><td>agreement, performance</td></tr>
+            <tr><td>${tag("n")} คน</td><td class="sx">-er -or -ee -ant -ist</td><td>employee, applicant</td></tr>
+            <tr><td>${tag("adj")}</td><td class="sx">-ive -ous -able -ible -ful -less -al -ial -ic -ary -ory -ent -ed</td><td>effective, available</td></tr>
+            <tr><td>${tag("adv")}</td><td class="sx">-ly</td><td>efficiently, approximately</td></tr>
+            <tr><td>${tag("v")}</td><td class="sx">-ize -ise -ate -ify -en</td><td>organize, clarify</td></tr>
+          </tbody>
+        </table></div>
+        <p class="note">ข้อยกเว้นที่ควรรู้: itinerary (-ary แต่เป็น noun), friendly / timely (-ly แต่เป็น adjective), regarding (-ing แต่เป็น preposition), however / nevertheless เป็น adverb ไม่ใช่ conjunction</p>
+      </div>
+    </details>`;
+
+  document.querySelectorAll("[data-mode]").forEach(b => b.onclick = () => { store.mode = b.dataset.mode; save(); renderHome(); });
+  document.querySelectorAll("[data-deck]").forEach(b => b.onclick = () => {
+    const k = b.dataset.deck; const s = new Set(store.decks); s.has(k) ? s.delete(k) : s.add(k); store.decks = [...s]; save(); renderHome();
+  });
+  $("#deck-all").onclick = () => { store.decks = DECKS.map(d => d.k); save(); renderHome(); };
+  document.querySelectorAll("[data-len]").forEach(b => b.onclick = () => { store.len = +b.dataset.len; save(); renderHome(); });
+  $("#start").onclick = () => startSession();
+}
+
+function renderQuiz() {
+  const c = S.queue[S.i], x = c.x, steps = S.mode.steps;
+  const step = steps[c.stepIdx]; // undefined => reveal
+  const done = !step;
+  const firstCount = S.queue.filter(q => !q.retry).length;
+  const doneCount = S.i + (done ? 1 : 0);
+  const stepNames = { pos: "ประเภทคำ", meaning: "ความหมาย", part5: "เติมคำ" };
+
+  let head = "";
+  if (S.mode.k === "part5") {
+    const blanked = esc(x.ex).replace(wordRe(esc(x.w)), `<span class="blank">${done ? esc(x.ex.match(wordRe(x.w))[0]) : "&nbsp;"}</span>`);
+    head = `<p class="sentence">${blanked}</p><p class="note">${esc(x.th)} · เลือกรูปคำที่ถูกต้องเติมในช่องว่าง</p>`;
+  } else {
+    head = `<h2 class="word">${esc(x.w)}</h2>`;
+  }
+
+  const showPos = steps.includes("pos");
+  const showMeaning = steps.includes("meaning") && (c.stepIdx >= steps.indexOf("meaning"));
+
+  let html = `
+    <div class="qbar">
+      <span class="count">${Math.min(doneCount, S.queue.length)} / ${S.queue.length}</span>
+      <div class="track"><i style="width:${(doneCount / S.queue.length * 100).toFixed(1)}%"></i></div>
+      <button class="quit" id="quit">ออก</button>
+    </div>
+    <article class="card">
+      <div class="card-meta">
+        <span class="label">${DECKS.find(d => d.k === x.d).th}${c.retry ? ` · <span class="retry">ทวนอีกครั้ง</span>` : ""}</span>
+        <div class="steps">${steps.map((s, i) => `<span class="${i < c.stepIdx ? "done" : i === c.stepIdx ? "on" : ""}">${i + 1} ${stepNames[s]}</span>`).join("")}</div>
+      </div>
+      ${head}`;
+
+  if (showPos) {
+    const answered = c.pos !== null;
+    html += `<section class="step">
+      <p class="prompt">คำนี้เป็นคำประเภทอะไร? <small>กด 1–7</small></p>
+      <div class="posgrid">${POS.map((p, i) => {
+        let cls = "";
+        if (answered) cls = x.p.includes(p.k) ? "right" : (c.pos === p.k ? "wrong" : "dim");
+        return `<button class="opt pos-opt ${cls}" id="pos-${p.k}" data-pos="${p.k}" ${answered ? "disabled" : ""}>
+          <span class="bub">${i + 1}</span><span class="txt"><b>${p.en}</b><small>${p.th}</small></span></button>`;
+      }).join("")}</div>
+      ${answered ? verdict(x.p.includes(c.pos), `${x.p.map(p => POSMAP[p].en).join(" / ")}`) : ""}
+    </section>`;
+  }
+
+  if (showMeaning) {
+    const answered = c.meaning !== null;
+    html += `<section class="step appear">
+      <p class="prompt">ความหมายคือ? <small>กด A–D หรือ 1–4</small></p>
+      <div class="opts">${c.mChoices.map((o, i) => {
+        let cls = "";
+        if (answered) cls = o.ok ? "right" : (c.meaning === i ? "wrong" : "dim");
+        return `<button class="opt ${cls}" id="m-${i}" data-m="${i}" ${answered ? "disabled" : ""}>
+          <span class="bub">${"ABCD"[i]}</span><span class="txt"><b>${esc(o.th)}</b></span></button>`;
+      }).join("")}</div>
+    </section>`;
+  }
+
+  if (steps.includes("part5")) {
+    const answered = c.part5 !== null;
+    html += `<section class="step">
+      <p class="prompt">คำไหนเหมาะกับช่องว่าง? <small>กด A–D หรือ 1–4</small></p>
+      <div class="opts">${c.pChoices.map(([w, p, ok], i) => {
+        let cls = "";
+        if (answered) cls = ok ? "right" : (c.part5 === i ? "wrong" : "dim");
+        return `<button class="opt ${cls}" id="p5-${i}" data-p5="${i}" ${answered ? "disabled" : ""}>
+          <span class="bub">${"ABCD"[i]}</span><span class="txt"><span class="en">${esc(w)}</span></span>${answered ? `<span class="side">${tag(p)}</span>` : ""}</button>`;
+      }).join("")}</div>
+      ${answered ? verdict(c.pChoices[c.part5][2], `${x.w} (${POSMAP[x.p[0]].en})`) : ""}
+    </section>`;
+  }
+
+  if (done) html += revealHtml(c);
+  html += `</article>`;
+  if (done) html += `<div class="nextrow"><button class="btn" id="next">${S.i + 1 < S.queue.length ? "คำถัดไป" : "ดูสรุปผล"} <kbd>Enter</kbd></button></div>`;
+
+  $("#app").innerHTML = html;
+  $("#quit").onclick = renderHome;
+  document.querySelectorAll("[data-pos]").forEach(b => b.onclick = () => answer("pos", b.dataset.pos));
+  document.querySelectorAll("[data-m]").forEach(b => b.onclick = () => answer("meaning", +b.dataset.m));
+  document.querySelectorAll("[data-p5]").forEach(b => b.onclick = () => answer("part5", +b.dataset.p5));
+  if (done) { $("#next").onclick = next; $("#next").focus({ preventScroll: true }); }
+}
+
+function verdict(ok, correct) {
+  return ok ? `<p class="verdict ok">✓ ถูกต้อง</p>` : `<p class="verdict bad">✗ คำตอบคือ ${esc(correct)}</p>`;
+}
+
+function revealHtml(c) {
+  const x = c.x, clue = suffixClue(x);
+  const ex = esc(x.ex).replace(wordRe(esc(x.w)), m => `<mark>${m}</mark>`);
+  let rows = `
+    <div class="row"><span class="label">คำตอบ</span><div class="ans"><span>${esc(x.w)}</span>${x.p.map(tag).join("")}<span>— ${esc(x.th)}</span></div></div>`;
+  if (S.mode.k !== "part5") rows += `<div class="row"><span class="label">ตัวอย่าง</span><div class="ex">${ex}</div></div>`;
+  if (clue) rows += `<div class="row"><span class="label">เบาะแส</span><div class="clue ${clue.warn ? "warn" : ""}">${clue.html}</div></div>`;
+  if (x.f) rows += `<div class="row"><span class="label">Word family</span><div class="fam">
+      <span class="me">${esc(x.w)} ${tag(x.p[0])}</span>${x.f.map(([w, p]) => `<span>${esc(w)} ${tag(p)}</span>`).join("")}</div></div>`;
+  if (x.tip) rows += `<div class="tip">${esc(x.tip)}</div>`;
+  return `<section class="reveal appear">${rows}</section>`;
+}
+
+function answer(kind, val) {
+  const c = S.queue[S.i];
+  if (c[kind] !== null || S.mode.steps[c.stepIdx] !== kind) return;
+  c[kind] = val;
+  c.stepIdx++;
+  if (!S.mode.steps[c.stepIdx]) finishCard(c);
+  renderQuiz();
+}
+
+function cardCorrect(c) {
+  const x = c.x, r = {};
+  if (c.pos !== null) r.pos = x.p.includes(c.pos);
+  if (c.meaning !== null) r.meaning = c.mChoices[c.meaning].ok;
+  if (c.part5 !== null) r.part5 = c.pChoices[c.part5][2];
+  return r;
+}
+function finishCard(c) {
+  const r = cardCorrect(c), ok = Object.values(r).every(Boolean);
+  if (!c.retry) {
+    S.results.set(c.x.w, { x: c.x, r });
+    store.boxes[c.x.w] = ok ? Math.min(5, boxOf(c.x.w) + 1) : 1;
+    save();
+  }
+  if (!ok && !c.retry) S.queue.push(makeCard(c.x, true));
+}
+
+function next() {
+  if (S.i + 1 < S.queue.length) { S.i++; renderQuiz(); window.scrollTo({ top: 0 }); }
+  else renderSummary();
+}
+
+function renderSummary() {
+  const res = [...S.results.values()];
+  const good = res.filter(o => Object.values(o.r).every(Boolean)).length;
+  const wrong = res.filter(o => !Object.values(o.r).every(Boolean)).map(o => o.x);
+  const lbl = { pos: "ประเภท", meaning: "ความหมาย", part5: "เติมคำ" };
+  S.view = "summary";
+  $("#app").innerHTML = `
+    <header class="brand"><div><p class="label">สรุปรอบนี้ · ${esc(S.mode.th)}</p><h1>Vocab <span>Drill</span></h1></div></header>
+    <div class="score">
+      <div class="big">${good}<small> / ${res.length}</small></div>
+      <p>${good === res.length ? "ถูกครบทุกคำ คำเหล่านี้ขยับขึ้นกล่องแล้ว" : `ตอบผิด ${wrong.length} คำ คำเหล่านี้กลับไปอยู่กล่อง 1 และจะถูกเลือกก่อนในรอบหน้า`}</p>
+    </div>
+    <div class="reslist">${res.map(o => `
+      <div class="res">
+        <span class="w">${esc(o.x.w)} ${o.x.p.map(tag).join(" ")}</span>
+        <span class="m">${esc(o.x.th)}</span>
+        <span class="marks">${Object.entries(o.r).map(([k, v]) => `<span class="mk ${v ? "y" : "x"}">${v ? "✓" : "✗"} ${lbl[k]}</span>`).join("")}</span>
+      </div>`).join("")}
+    </div>
+    <div class="btnrow">
+      ${wrong.length ? `<button class="btn" id="again-wrong">ทวนคำที่ผิด ${wrong.length} คำ</button>` : ""}
+      <button class="btn ${wrong.length ? "ghost" : ""}" id="again">เริ่มรอบใหม่</button>
+      <button class="btn ghost" id="home">กลับหน้าแรก</button>
+    </div>`;
+  if (wrong.length) $("#again-wrong").onclick = () => startSession(wrong);
+  $("#again").onclick = () => startSession();
+  $("#home").onclick = renderHome;
+}
+
+// ---------------- keyboard ----------------
+document.addEventListener("keydown", e => {
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  if (S.view === "home" && e.key === "Enter" && document.activeElement === document.body) { $("#start") && !$("#start").disabled && startSession(); return; }
+  if (S.view !== "quiz") return;
+  const c = S.queue[S.i], step = S.mode.steps[c.stepIdx];
+  if (!step) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); next(); } return; }
+  const k = e.key.toLowerCase();
+  if (step === "pos") { const n = +k; if (n >= 1 && n <= 7) answer("pos", POS[n - 1].k); }
+  else {
+    let idx = "abcd".indexOf(k); if (idx < 0 && +k >= 1 && +k <= 4) idx = +k - 1;
+    if (idx >= 0) answer(step, idx);
+  }
+});
+
+renderHome();
+</script>
