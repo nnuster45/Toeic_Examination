@@ -96,6 +96,13 @@ p, h1, h2, h3 { margin: 0; }
 .fam { display: flex; flex-wrap: wrap; gap: 8px; }
 .fam span { display: inline-flex; gap: 6px; align-items: center; border: 1px solid var(--line); border-radius: 10px; padding: 4px 10px; font-size: 14.5px; }
 .fam span.me { border-color: var(--ink); font-weight: 700; }
+.why .cue { font-family: var(--f-mono); font-size: 13.5px; font-weight: 600; color: var(--accent); background: var(--accent-soft); border-radius: 8px; padding: 6px 10px; align-self: flex-start; }
+.why .choices { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.why .choices li { display: flex; flex-direction: column; gap: 2px; padding: 8px 10px; border-radius: 10px; background: var(--ground); }
+.why .choices li.y { background: var(--ok-soft); }
+.why .cw { font-weight: 700; font-size: 14.5px; display: flex; gap: 6px; align-items: center; }
+.why li.y .cw { color: var(--ok); } .why li.x .cw { color: var(--ink); }
+.why .cr { font-size: 13.5px; color: var(--muted); }
 .tip { font-size: 14px; background: var(--accent-soft); border-radius: 12px; padding: 10px 12px; }
 .flipnote { font-size: 12px; color: var(--muted); text-align: center; }
 
@@ -319,6 +326,42 @@ const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { c
 const tag = k => `<span class="tag t-${k}">${k}.</span>`;
 const wordRe = w => new RegExp("\\b" + w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b", "i");
 const part5Ok = x => x.f && x.f.length >= 2 && wordRe(x.w).test(x.ex);
+// Why the blank needs this form (sentence cards). [cue, explanation, optional notes for specific wrong choices]
+const WHY = {
+  attendance: ["___ at ... is → ประธาน = Noun", "ช่องว่างอยู่ต้นประโยค ตามด้วยกริยา is จึงต้องเป็นประธานของประโยค ประธานต้องเป็นคำนาม", { attendee: "เป็นคำนามเหมือนกัน แต่หมายถึง ผู้เข้าร่วม (คน) และนับได้ ต้องมี An/The นำหน้า ความหมายก็ไม่เข้ากับ mandatory" }],
+  mandatory: ["is + ___ → Adjective", "หลัง verb to be (is) ต้องใช้คุณศัพท์บอกลักษณะของประธาน safety training ว่าเป็นสิ่งที่บังคับ", { mandate: "เป็นคำนามนับได้ ถ้าจะใช้ต้องเป็น is a mandate" }],
+  punctual: ["is always + ___ → Adjective", "หลัง is ต้องใช้คุณศัพท์บอกลักษณะของ Ms. Lee ส่วน always เป็น adverb ที่แทรกอยู่เฉยๆ ไม่เปลี่ยนตำแหน่ง"],
+  supervise: ["will + ___ → Verb (ช่อง 1)", "หลัง modal verb (will, can, must, should) ต้องตามด้วยกริยารูปฐาน และต้องมีกรรม the new interns ตามมา"],
+  efficiently: ["process orders more ___ → Adverb", "ประโยค helps us process orders ครบแล้ว คำที่เติมท้ายเพื่อบอกว่าทำ อย่างไร ต้องเป็น adverb ขยายกริยา process"],
+  announcement: ["an + ___ → Noun", "หลัง article (a / an / the) ต้องเป็นคำนาม และ make an announcement เป็นวลีที่ใช้บ่อย", { announcer: "เป็นคำนามเหมือนกัน แต่หมายถึง ผู้ประกาศ (คน) ทำว่า CEO สร้างผู้ประกาศ ไม่มีความหมาย" }],
+  equipment: ["All office ___ must → ประธาน = Noun", "ช่องว่างตามหลัง All office และอยู่หน้ากริยา must be returned จึงเป็นแก่นของประธาน ต้องเป็นคำนาม (office equipment เป็นคำนามประสม)"],
+  confidential: ["are strictly + ___ → Adjective", "หลัง are ต้องเป็นคุณศัพท์บอกลักษณะของ records ส่วน strictly เป็น adverb มาขยายคุณศัพท์ตัวนั้น"],
+  profitable: ["became + ___ → Adjective", "became เป็น linking verb (เหมือน be, seem, remain) ตามด้วยคุณศัพท์บอกสภาพของประธาน"],
+  approximately: ["___ + three weeks → Adverb", "คำที่ขยายตัวเลขหรือจำนวน (ประมาณ 3 สัปดาห์) ต้องเป็น adverb เหมือน about, nearly, almost"],
+  substantial: ["a + ___ + increase → Adjective", "ช่องว่างอยู่ระหว่าง a กับคำนาม increase คำที่อยู่หน้านามเพื่อขยายนาม ต้องเป็นคุณศัพท์"],
+  deduct: ["will + ___ → Verb (ช่อง 1)", "หลัง will ต้องเป็นกริยารูปฐาน และมีกรรม a small fee ตามมา"],
+  financially: ["not ___ feasible → Adverb", "feasible เป็นคุณศัพท์ คำที่ขยายคุณศัพท์ต้องเป็น adverb (เป็นไปได้ ในทางการเงิน)"],
+  applicant: ["Each + ___ → Noun เอกพจน์", "หลัง each ต้องเป็นคำนามนับได้เอกพจน์ และเป็นประธานของ must provide จึงต้องเป็นคนที่ส่งเอกสารได้"],
+  qualified: ["a + ___ + accountant → Adjective", "ช่องว่างอยู่หน้าคำนาม accountant ต้องเป็นคุณศัพท์ขยายนาม (V-ed ทำหน้าที่คุณศัพท์ได้)"],
+  recruit: ["plans to + ___ → Verb (ช่อง 1)", "to ในที่นี้คือ to-infinitive (plan to do) ต้องตามด้วยกริยารูปฐาน"],
+  promotion: ["received a + ___ → Noun", "หลัง a ต้องเป็นคำนาม และเป็นกรรมของ received", { promotional: "เป็นคุณศัพท์ ต้องมีคำนามตามหลัง เช่น a promotional offer" }],
+  evaluate: ["Managers + ___ + staff → Verb", "ประโยคมีประธาน Managers แต่ยังไม่มีกริยาแท้ ช่องนี้จึงต้องเป็นกริยา และประธานพหูพจน์ใช้รูปไม่เติม s"],
+  retirement: ["her + ___ → Noun", "หลังคำแสดงความเป็นเจ้าของ (her, his, their, its) ต้องเป็นคำนาม เป็นกรรมของ celebrate", { retired: "เป็นคุณศัพท์ ต้องมีคำนามตามหลัง เช่น her retired colleagues" }],
+  responsibility: ["the manager's + ___ → Noun", "'s แสดงความเป็นเจ้าของ ตามด้วยคำนามเสมอ (ความรับผิดชอบของผู้จัดการ)"],
+  thoroughly: ["read the contract ___ → Adverb", "ประโยค read the contract ครบแล้ว คำที่บอกว่าอ่าน อย่างไร ต้องเป็น adverb ขยายกริยา read"],
+  reservation: ["make a + ___ → Noun", "หลัง a ต้องเป็นคำนาม และ make a reservation เป็นวลีตายตัวแปลว่า จอง"],
+  conveniently: ["is ___ located → Adverb", "is located เป็น passive (be + V3) คำที่แทรกระหว่าง be กับ V3 เพื่อขยายกริยา ต้องเป็น adverb"],
+  spacious: ["are ___ and quiet → Adjective", "หลัง are ต้องเป็นคุณศัพท์ และคำที่เชื่อมด้วย and ต้องเป็นชนิดเดียวกับ quiet ซึ่งเป็นคุณศัพท์"],
+  competitor: ["Our main + ___ → Noun", "หลัง Our main (คำแสดงเจ้าของ + คุณศัพท์) ต้องเป็นคำนาม และเป็นประธานที่ลดราคาได้ จึงต้องเป็นผู้กระทำ (คู่แข่ง)"],
+  advertise: ["We + ___ + our products → Verb", "ประธาน We ยังไม่มีกริยาแท้ ช่องนี้ต้องเป็นกริยา และมีกรรม our products ตามมา"],
+  innovative: ["its + ___ + designs → Adjective", "ช่องว่างอยู่หน้าคำนาม designs ต้องเป็นคุณศัพท์ขยายนาม"],
+  exclusively: ["available ___ to members → Adverb", "ประโยคครบแล้ว (is available to members) คำที่เติมมาขยายวลีว่า เฉพาะ สมาชิก ต้องเป็น adverb"],
+  persuasive: ["a + ___ + presentation → Adjective", "ช่องว่างอยู่ระหว่าง a กับคำนาม presentation ต้องเป็นคุณศัพท์ขยายนาม"],
+  consumer: ["Every + ___ + has → Noun เอกพจน์", "หลัง every ต้องเป็นคำนามนับได้เอกพจน์ และเป็นประธานที่ มีสิทธิ์ ได้ จึงต้องเป็นคน"],
+  increasingly: ["is ___ popular → Adverb", "popular เป็นคุณศัพท์ คำที่ขยายคุณศัพท์ต้องเป็น adverb (เป็นที่นิยม มากขึ้นเรื่อยๆ)"],
+  affordable: ["at ___ prices → Adjective", "ช่องว่างอยู่หน้าคำนาม prices ต้องเป็นคุณศัพท์ขยายนาม"],
+  strategy: ["a new marketing + ___ → Noun", "a new marketing ยังไม่จบวลี ต้องมีคำนามเป็นแก่น (marketing ทำหน้าที่ขยาย) และเป็นกรรมของ developed"],
+};
 const KEYS = "ABCD";
 const ARROW = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>`;
 
@@ -392,6 +435,22 @@ function frontHtml(c) {
     <div class="f-body">${body}</div><div class="f-foot">${foot}</div>`;
 }
 
+function whyHtml(c) {
+  const x = c.x, w = WHY[x.w];
+  if (c.type !== "sentence" || !w) return "";
+  const [cue, text, notes] = w, me = x.p[0];
+  const rows = c.choices.part5.map(o => {
+    let why;
+    if (o.ok) why = `ถูก เพราะเป็น ${POSMAP[o.pos].en} ตรงกับตำแหน่งนี้`;
+    else if (notes && notes[o.label]) why = notes[o.label];
+    else if (o.pos === me) why = `เป็น ${POSMAP[o.pos].en} เหมือนกัน แต่ความหมายไม่เข้ากับประโยค`;
+    else why = `เป็น ${POSMAP[o.pos].en} (${POSMAP[o.pos].th}) ใช้ในตำแหน่งนี้ไม่ได้`;
+    return `<li class="${o.ok ? "y" : "x"}"><span class="cw">${o.ok ? "✓" : "✗"} ${esc(o.label)} ${tag(o.pos)}</span><span class="cr">${esc(why)}</span></li>`;
+  }).join("");
+  return `<div class="sec why"><span class="label">ทำไมต้องเติม ${esc(x.w)}</span>
+    <p class="cue">${esc(cue)}</p><p>${esc(text)}</p><ul class="choices">${rows}</ul></div>`;
+}
+
 function backHtml(c) {
   const x = c.x, clue = suffixClue(x);
   const wrongN = c.steps.filter(s => !isRight(c, s)).length;
@@ -400,7 +459,8 @@ function backHtml(c) {
     <div class="b-top"><span class="label">${DECKS.find(d => d.k === x.d).th}</span>
       <span class="badge ${wrongN ? "bad" : "ok"}">${wrongN ? `✗ ผิด ${wrongN} ข้อ` : "✓ ถูกครบ"}</span></div>
     <div class="b-word"><h2>${esc(x.w)}</h2><div class="tags">${x.p.map(p => `${tag(p)}<span class="label" style="align-self:center">${POSMAP[p].en}</span>`).join("")}</div><p class="th">${esc(x.th)}</p></div>
-    <div class="sec"><span class="label">ประโยคตัวอย่าง</span><p>${ex}</p></div>
+    ${whyHtml(c)}
+    <div class="sec"><span class="label">${c.type === "sentence" ? "ประโยคที่เติมแล้ว" : "ประโยคตัวอย่าง"}</span><p>${ex}</p></div>
     ${clue ? `<div class="sec"><span class="label">ดูจากคำลงท้าย</span><p class="${clue.warn ? "warn" : ""}">${clue.html}</p></div>` : ""}
     ${x.f ? `<div class="sec"><span class="label">Word family</span><div class="fam"><span class="me">${esc(x.w)} ${tag(x.p[0])}</span>${x.f.map(([w, p]) => `<span>${esc(w)} ${tag(p)}</span>`).join("")}</div></div>` : ""}
     ${x.tip ? `<div class="tip">${esc(x.tip)}</div>` : ""}
