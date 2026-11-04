@@ -1,0 +1,530 @@
+<title>TOEIC Flashcards</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one-screen mobile app. Top bar, a flippable index card in the middle, answer choices docked at the bottom.
+   Deliberately single white theme (per request), so every color is set explicitly. */
+:root {
+  color-scheme: light;
+  --bg: #FFFFFF;
+  --ground: #F4F6F9;         /* behind the card */
+  --card: #FFFFFF;
+  --ink: #141B2D;
+  --muted: #687185;
+  --line: #E3E7ED;
+  --rule: #DCE7F5;           /* index-card ruled lines */
+  --margin: #F0B8B8;         /* index-card header line */
+  --accent: #2257D6;
+  --accent-soft: #EAF0FD;
+  --ok: #17865A; --ok-soft: #E3F4EC;
+  --bad: #D03B32; --bad-soft: #FCE8E6;
+  --hl: #FFF1A6;
+  --c-n: #2F66C9; --c-v: #C8502C; --c-adj: #2E8A4E; --c-adv: #A8720A;
+  --c-prep: #7A4CC2; --c-conj: #0E8585; --c-pron: #C23D7E;
+  --f-display: "Bricolage Grotesque", "IBM Plex Sans Thai", system-ui, sans-serif;
+  --f-body: "IBM Plex Sans Thai", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  --radius: 22px;
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.55; overflow: hidden; }
+button { font: inherit; color: inherit; cursor: pointer; border: 0; background: none; }
+button:focus-visible { outline: 2.5px solid var(--accent); outline-offset: 2px; }
+p, h1, h2, h3 { margin: 0; }
+
+.app { height: 100%; max-width: 460px; margin: 0 auto; display: flex; flex-direction: column; background: var(--bg);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 10px 14px; gap: 12px; }
+
+/* ---------- top bar ---------- */
+.top { display: flex; align-items: center; gap: 12px; flex: none; height: 40px; }
+.top .count { font-family: var(--f-mono); font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; min-width: 44px; }
+.track { flex: 1; height: 6px; border-radius: 3px; background: var(--line); overflow: hidden; }
+.track i { display: block; height: 100%; background: var(--accent); border-radius: 3px; transition: width .35s ease; }
+.iconbtn { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; color: var(--ink); background: var(--ground); }
+.iconbtn svg { width: 20px; height: 20px; }
+
+/* ---------- card scene ---------- */
+.scene { flex: 1; min-height: 260px; position: relative; perspective: 1400px; }
+.card3d { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform .7s cubic-bezier(.25,.8,.25,1); }
+.card3d.flipped { transform: rotateY(180deg); }
+.card3d.instant { transition: none; }
+.face { position: absolute; inset: 0; border-radius: var(--radius); background: var(--card); border: 1px solid var(--line);
+  box-shadow: 0 1px 2px rgba(20,27,45,.06), 0 12px 32px -12px rgba(20,27,45,.18);
+  -webkit-backface-visibility: hidden; backface-visibility: hidden; overflow: hidden; display: flex; flex-direction: column; }
+.back { transform: rotateY(180deg); }
+.enter { animation: enter .35s cubic-bezier(.2,.8,.3,1); }
+@keyframes enter { from { transform: translateX(28px) rotate(1.5deg); opacity: .3; } to { transform: none; opacity: 1; } }
+
+/* front: an index card with ruled lines */
+.front { background:
+  linear-gradient(var(--card), var(--card)) top / 100% 52px no-repeat,
+  linear-gradient(var(--margin), var(--margin)) 0 52px / 100% 2px no-repeat,
+  repeating-linear-gradient(to bottom, transparent 0 33px, var(--rule) 33px 34px) 0 54px / 100% calc(100% - 54px) no-repeat,
+  var(--card); }
+.f-head { height: 52px; flex: none; display: flex; align-items: center; justify-content: space-between; padding: 0 18px; gap: 8px; }
+.label { font-family: var(--f-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.kind { font-size: 12px; font-weight: 600; color: var(--accent); background: var(--accent-soft); padding: 3px 10px; border-radius: 999px; }
+.f-body { flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 12px 22px; text-align: center; }
+.word { font-family: var(--f-display); font-weight: 700; font-size: clamp(40px, 13vw, 58px); line-height: 1; letter-spacing: -0.025em; overflow-wrap: anywhere; background: var(--card); padding: 4px 10px; border-radius: 8px; }
+.sentence { font-size: clamp(19px, 5.6vw, 23px); line-height: 34px; font-weight: 500; text-align: left; max-width: 34ch; }
+.blank { display: inline-block; min-width: 5.2em; border-bottom: 2.5px solid var(--accent); height: 1.3em; vertical-align: -2px; }
+.hint { font-size: 13px; color: var(--muted); background: var(--card); padding: 2px 8px; border-radius: 6px; }
+.f-foot { flex: none; display: flex; justify-content: center; gap: 8px; padding: 0 18px 16px; flex-wrap: wrap; min-height: 44px; align-items: center; }
+.stat { font-size: 12.5px; font-weight: 600; border-radius: 999px; padding: 4px 12px; background: var(--card); border: 1px solid var(--line); color: var(--muted); display: inline-flex; gap: 6px; align-items: center; }
+.stat.ok { border-color: var(--ok); color: var(--ok); background: var(--ok-soft); }
+.stat.bad { border-color: var(--bad); color: var(--bad); background: var(--bad-soft); }
+.stat.on { border-color: var(--accent); color: var(--accent); }
+
+/* back: the explanation */
+.b-scroll { flex: 1; min-height: 0; overflow-y: auto; padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 16px; }
+.b-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.badge { font-size: 12.5px; font-weight: 700; padding: 4px 12px; border-radius: 999px; }
+.badge.ok { background: var(--ok-soft); color: var(--ok); }
+.badge.bad { background: var(--bad-soft); color: var(--bad); }
+.b-word { display: flex; flex-direction: column; gap: 6px; }
+.b-word h2 { font-family: var(--f-display); font-weight: 800; font-size: 40px; line-height: 1; letter-spacing: -0.025em; overflow-wrap: anywhere; }
+.b-word .tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.b-word .th { font-size: 20px; font-weight: 600; line-height: 1.4; }
+.sec { display: flex; flex-direction: column; gap: 6px; padding-top: 14px; border-top: 1px solid var(--line); }
+.sec p { font-size: 15px; }
+.sec mark { background: var(--hl); color: inherit; padding: 0 3px; border-radius: 3px; font-weight: 600; }
+.sx { font-family: var(--f-mono); font-weight: 600; font-size: 13.5px; background: var(--accent-soft); color: var(--accent); border-radius: 4px; padding: 0 5px; }
+.warn { color: var(--bad); }
+.fam { display: flex; flex-wrap: wrap; gap: 8px; }
+.fam span { display: inline-flex; gap: 6px; align-items: center; border: 1px solid var(--line); border-radius: 10px; padding: 4px 10px; font-size: 14.5px; }
+.fam span.me { border-color: var(--ink); font-weight: 700; }
+.tip { font-size: 14px; background: var(--accent-soft); border-radius: 12px; padding: 10px 12px; }
+.flipnote { font-size: 12px; color: var(--muted); text-align: center; }
+
+.tag { display: inline-flex; align-items: center; font-family: var(--f-mono); font-size: 11.5px; font-weight: 600; border-radius: 5px; padding: 1px 7px; border: 1px solid currentColor; white-space: nowrap; }
+.t-n { color: var(--c-n); } .t-v { color: var(--c-v); } .t-adj { color: var(--c-adj); } .t-adv { color: var(--c-adv); }
+.t-prep { color: var(--c-prep); } .t-conj { color: var(--c-conj); } .t-pron { color: var(--c-pron); }
+
+/* ---------- bottom: choices ---------- */
+.dock { flex: none; display: flex; flex-direction: column; gap: 10px; }
+.ask { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.ask b { font-size: 16px; }
+.ask small { font-family: var(--f-mono); font-size: 11px; color: var(--muted); }
+.posgrid { display: flex; flex-wrap: wrap; gap: 8px; }
+.posgrid .opt { flex: 1 1 22%; flex-direction: column; align-items: center; gap: 0; padding: 9px 4px; min-height: 58px; justify-content: center; }
+.posgrid .opt .ab { font-family: var(--f-mono); font-weight: 600; font-size: 15px; }
+.posgrid .opt small { font-size: 11.5px; color: var(--muted); line-height: 1.3; }
+.list { display: flex; flex-direction: column; gap: 8px; }
+.opt { display: flex; align-items: center; gap: 12px; text-align: left; background: var(--bg); border: 1.5px solid var(--line); border-radius: 14px; padding: 11px 14px; min-height: 52px; transition: border-color .15s, background .15s, transform .1s; }
+.opt:active:not(:disabled) { transform: scale(.98); }
+@media (hover: hover) { .opt:hover:not(:disabled) { border-color: var(--ink); } }
+.opt:disabled { cursor: default; }
+.opt .key { width: 26px; height: 26px; flex: none; border-radius: 50%; border: 1.5px solid var(--line); display: grid; place-items: center; font-family: var(--f-mono); font-size: 11.5px; font-weight: 600; color: var(--muted); }
+.opt .t { font-weight: 600; font-size: 15.5px; line-height: 1.35; min-width: 0; }
+.opt .t.en { font-family: var(--f-display); font-size: 19px; font-weight: 700; letter-spacing: -0.01em; }
+.opt .side { margin-left: auto; }
+.opt.right { border-color: var(--ok); background: var(--ok-soft); }
+.opt.right .key { background: var(--ok); border-color: var(--ok); color: #fff; }
+.opt.wrong { border-color: var(--bad); background: var(--bad-soft); animation: shake .35s; }
+.opt.wrong .key { background: var(--bad); border-color: var(--bad); color: #fff; }
+.opt.dim { opacity: .4; }
+@keyframes shake { 20%, 60% { transform: translateX(-5px); } 40%, 80% { transform: translateX(5px); } }
+
+.result { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 4px 2px; }
+.result p { font-size: 14px; color: var(--muted); }
+.result p b { color: var(--ink); }
+.btn { border-radius: 14px; padding: 14px 22px; font-weight: 700; font-size: 16px; background: var(--accent); color: #fff; display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; }
+.btn.wide { width: 100%; }
+.btn.ghost { background: var(--ground); color: var(--ink); }
+.btn svg { width: 18px; height: 18px; }
+
+/* ---------- summary ---------- */
+.sum { position: absolute; inset: 0; padding: 22px 20px; display: flex; flex-direction: column; gap: 14px; overflow-y: auto; }
+.sum .big { font-family: var(--f-display); font-weight: 800; font-size: 72px; line-height: .9; font-variant-numeric: tabular-nums; }
+.sum .big small { font-size: 30px; color: var(--muted); }
+.sum ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.sum li { display: flex; justify-content: space-between; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
+.sum li b { font-family: var(--f-display); font-size: 17px; }
+.sum li span { font-size: 13.5px; color: var(--muted); text-align: right; }
+.row2 { display: flex; gap: 8px; } .row2 .btn { flex: 1; }
+
+/* ---------- settings sheet ---------- */
+.veil[hidden] { display: none; }
+.veil { position: fixed; inset: 0; background: rgba(20,27,45,.32); display: flex; align-items: flex-end; justify-content: center; z-index: 20; }
+.sheet { width: 100%; max-width: 460px; background: var(--bg); border-radius: 22px 22px 0 0; padding: 10px max(18px, env(safe-area-inset-left, 0px)) calc(18px + env(safe-area-inset-bottom, 0px)); display: flex; flex-direction: column; gap: 16px; max-height: 88%; overflow-y: auto; animation: up .25s ease-out; }
+@keyframes up { from { transform: translateY(40px); } to { transform: none; } }
+.grab { width: 40px; height: 4px; border-radius: 2px; background: var(--line); margin: 0 auto; }
+.sheet h3 { font-size: 18px; }
+.group { display: flex; flex-direction: column; gap: 8px; }
+.seg { display: flex; background: var(--ground); border-radius: 12px; padding: 4px; gap: 4px; }
+.seg button { flex: 1; padding: 8px 4px; border-radius: 9px; font-size: 13.5px; font-weight: 600; color: var(--muted); }
+.seg button[aria-pressed="true"] { background: var(--bg); color: var(--ink); box-shadow: 0 1px 3px rgba(20,27,45,.12); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { border: 1.5px solid var(--line); border-radius: 999px; padding: 6px 14px; font-size: 14px; display: inline-flex; gap: 6px; align-items: center; }
+.chip em { font-style: normal; font-family: var(--f-mono); font-size: 12px; color: var(--muted); }
+.chip[aria-pressed="true"] { border-color: var(--accent); background: var(--accent); color: #fff; }
+.chip[aria-pressed="true"] em { color: inherit; opacity: .8; }
+
+@media (prefers-reduced-motion: reduce) {
+  .card3d { transition: none; } .enter, .opt.wrong, .sheet { animation: none; }
+}
+@media (max-height: 640px) { .word { font-size: 40px; } .posgrid .opt { min-height: 50px; padding: 6px 4px; } .opt { min-height: 46px; padding: 8px 12px; } }
+</style>
+
+<div class="app" id="app">
+  <div class="top">
+    <span class="count" id="count">0 / 0</span>
+    <div class="track"><i id="bar" style="width:0%"></i></div>
+    <button class="iconbtn" id="settings" aria-label="ตั้งค่าชุดคำ">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>
+    </button>
+  </div>
+  <div class="scene" id="scene"></div>
+  <div class="dock" id="dock"></div>
+</div>
+<div class="veil" id="veil" hidden></div>
+
+<script>
+const POS = [
+  { k: "n",    en: "Noun",        th: "คำนาม" },
+  { k: "v",    en: "Verb",        th: "คำกริยา" },
+  { k: "adj",  en: "Adjective",   th: "คุณศัพท์" },
+  { k: "adv",  en: "Adverb",      th: "กริยาวิเศษณ์" },
+  { k: "prep", en: "Preposition", th: "บุพบท" },
+  { k: "conj", en: "Conjunction", th: "คำสันธาน" },
+  { k: "pron", en: "Pronoun",     th: "สรรพนาม" },
+];
+const POSMAP = Object.fromEntries(POS.map(p => [p.k, p]));
+
+const DECKS = [
+  { k: "office",    th: "ออฟฟิศ" },
+  { k: "finance",   th: "การเงิน" },
+  { k: "hr",        th: "บุคคล / HR" },
+  { k: "travel",    th: "เดินทาง" },
+  { k: "marketing", th: "การตลาด" },
+  { k: "grammar",   th: "คำเชื่อม & บุพบท" },
+];
+
+// w: word, p: parts of speech, th: Thai meaning, ex: example, f: word family [form, pos], g: synonym group (not used as distractors for each other), tip
+const WORDS = [
+  // office
+  { d:"office", w:"attendance", p:["n"], th:"การเข้าร่วม", ex:"Attendance at the safety workshop is mandatory for all staff.", f:[["attend","v"],["attendee","n"],["attentive","adj"]] },
+  { d:"office", w:"mandatory", p:["adj"], th:"ที่บังคับ, ต้องทำ", ex:"Safety training is mandatory for new employees.", f:[["mandate","n"],["mandatorily","adv"]] },
+  { d:"office", w:"postpone", p:["v"], th:"เลื่อนออกไป", ex:"We had to postpone the product launch until May." },
+  { d:"office", w:"punctual", p:["adj"], th:"ตรงต่อเวลา", ex:"Ms. Lee is always punctual for client meetings.", f:[["punctually","adv"],["punctuality","n"]] },
+  { d:"office", w:"colleague", p:["n"], th:"เพื่อนร่วมงาน", ex:"Please share the report with your colleague in accounting." },
+  { d:"office", w:"supervise", p:["v"], th:"ควบคุมดูแล", ex:"Mr. Park will supervise the new interns this summer.", f:[["supervisor","n"],["supervision","n"],["supervisory","adj"]] },
+  { d:"office", w:"efficiently", p:["adv"], th:"อย่างมีประสิทธิภาพ", ex:"The new software helps us process orders more efficiently.", f:[["efficient","adj"],["efficiency","n"]] },
+  { d:"office", w:"submit", p:["v"], th:"ยื่น, ส่ง (เอกสาร)", ex:"Please submit your expense report by Friday.", f:[["submission","n"]] },
+  { d:"office", w:"temporarily", p:["adv"], th:"ชั่วคราว", ex:"The east entrance is temporarily closed for repairs.", f:[["temporary","adj"]] },
+  { d:"office", w:"announcement", p:["n"], th:"การประกาศ, คำประกาศ", ex:"The CEO made an announcement about the merger.", f:[["announce","v"],["announcer","n"]] },
+  { d:"office", w:"equipment", p:["n"], th:"อุปกรณ์", ex:"All office equipment must be returned before you leave.", f:[["equip","v"],["equipped","adj"]] },
+  { d:"office", w:"confidential", p:["adj"], th:"เป็นความลับ", ex:"Client records are strictly confidential.", f:[["confidentiality","n"],["confidentially","adv"]] },
+  // finance
+  { d:"finance", w:"invoice", p:["n"], th:"ใบแจ้งหนี้", ex:"The invoice must be paid within 30 days." },
+  { d:"finance", w:"reimburse", p:["v"], th:"จ่ายเงินคืน, ชดใช้เงิน", ex:"The company will reimburse you for travel expenses.", f:[["reimbursement","n"]] },
+  { d:"finance", w:"revenue", p:["n"], th:"รายได้", ex:"Annual revenue rose by 12 percent last year." },
+  { d:"finance", w:"budget", p:["n","v"], th:"งบประมาณ", ex:"The marketing budget was cut in half." },
+  { d:"finance", w:"profitable", p:["adj"], th:"ทำกำไร, มีกำไร", ex:"The new branch became profitable within a year.", f:[["profit","n"],["profitability","n"],["profitably","adv"]] },
+  { d:"finance", w:"expenditure", p:["n"], th:"รายจ่าย, การใช้จ่าย", ex:"We need to reduce our expenditure on office supplies.", f:[["expend","v"]] },
+  { d:"finance", w:"approximately", p:["adv"], th:"ประมาณ", ex:"The renovation will take approximately three weeks.", f:[["approximate","adj"],["approximation","n"]] },
+  { d:"finance", w:"substantial", p:["adj"], th:"จำนวนมาก, อย่างมาก", ex:"The firm received a substantial increase in orders.", f:[["substantially","adv"],["substance","n"]] },
+  { d:"finance", w:"audit", p:["n","v"], th:"การตรวจสอบบัญชี", ex:"An external audit is conducted every spring.", f:[["auditor","n"]] },
+  { d:"finance", w:"fiscal", p:["adj"], th:"เกี่ยวกับการคลัง, ปีงบประมาณ", ex:"Sales targets for the next fiscal year have been set." },
+  { d:"finance", w:"deduct", p:["v"], th:"หัก (เงิน)", ex:"The bank will deduct a small fee from your account.", f:[["deduction","n"],["deductible","adj"]] },
+  { d:"finance", w:"financially", p:["adv"], th:"ในทางการเงิน", ex:"The expansion plan is not financially feasible this year.", f:[["finance","n"],["financial","adj"]] },
+  // hr
+  { d:"hr", w:"applicant", p:["n"], th:"ผู้สมัคร", ex:"Each applicant must provide two references.", f:[["apply","v"],["applicable","adj"]] },
+  { d:"hr", w:"qualified", p:["adj"], th:"มีคุณสมบัติเหมาะสม", ex:"We are looking for a qualified accountant.", f:[["qualify","v"],["qualification","n"]] },
+  { d:"hr", w:"recruit", p:["v"], th:"สรรหา, รับคนเข้าทำงาน", ex:"The firm plans to recruit ten engineers this year.", f:[["recruitment","n"],["recruiter","n"]] },
+  { d:"hr", w:"promotion", p:["n"], th:"การเลื่อนตำแหน่ง; การส่งเสริมการขาย", ex:"Ms. Tanaka received a promotion to sales director.", f:[["promote","v"],["promotional","adj"]] },
+  { d:"hr", w:"resign", p:["v"], th:"ลาออก", ex:"Mr. Silva decided to resign after twenty years with the firm.", f:[["resignation","n"]] },
+  { d:"hr", w:"evaluate", p:["v"], th:"ประเมิน", ex:"Managers evaluate staff performance twice a year.", f:[["evaluation","n"],["evaluator","n"]] },
+  { d:"hr", w:"retirement", p:["n"], th:"การเกษียณอายุ", ex:"A party was held to celebrate her retirement.", f:[["retire","v"],["retired","adj"]] },
+  { d:"hr", w:"experienced", p:["adj"], th:"มีประสบการณ์", ex:"Only experienced drivers may operate the forklift.", f:[["experience","n"]] },
+  { d:"hr", w:"responsibility", p:["n"], th:"ความรับผิดชอบ", ex:"Training new staff is the manager's responsibility.", f:[["responsible","adj"],["responsibly","adv"]] },
+  { d:"hr", w:"orientation", p:["n"], th:"การปฐมนิเทศ", ex:"New hires attend a two-day orientation.", f:[["orient","v"]] },
+  { d:"hr", w:"eligible", p:["adj"], th:"มีสิทธิ์, เข้าเกณฑ์", ex:"Full-time employees are eligible for health benefits.", f:[["eligibility","n"]] },
+  { d:"hr", w:"thoroughly", p:["adv"], th:"อย่างละเอียดถี่ถ้วน", ex:"Please read the contract thoroughly before signing.", f:[["thorough","adj"],["thoroughness","n"]] },
+  // travel
+  { d:"travel", w:"itinerary", p:["n"], th:"กำหนดการเดินทาง", ex:"Your travel itinerary has been sent by e-mail." },
+  { d:"travel", w:"accommodation", p:["n"], th:"ที่พัก", ex:"The conference fee includes accommodation and meals.", f:[["accommodate","v"]] },
+  { d:"travel", w:"depart", p:["v"], th:"ออกเดินทาง", ex:"The shuttle bus will depart from the hotel at 7 A.M.", f:[["departure","n"]] },
+  { d:"travel", w:"reservation", p:["n"], th:"การจอง", ex:"I'd like to make a reservation for four people.", f:[["reserve","v"],["reserved","adj"]] },
+  { d:"travel", w:"baggage", p:["n"], th:"สัมภาระ, กระเป๋าเดินทาง", ex:"Passengers may carry one piece of baggage on board." },
+  { d:"travel", w:"complimentary", p:["adj"], th:"ฟรี, ให้โดยไม่คิดเงิน", ex:"All guests receive a complimentary breakfast.", tip:"อย่าสับสนกับ complementary (ที่เสริมกัน) ใน TOEIC complimentary = ฟรี เจอบ่อยมาก" },
+  { d:"travel", w:"destination", p:["n"], th:"จุดหมายปลายทาง", ex:"Kyoto is a popular destination for tourists." },
+  { d:"travel", w:"conveniently", p:["adv"], th:"อย่างสะดวก", ex:"The hotel is conveniently located near the station.", f:[["convenient","adj"],["convenience","n"]] },
+  { d:"travel", w:"fare", p:["n"], th:"ค่าโดยสาร", ex:"The bus fare will increase next month." },
+  { d:"travel", w:"renovate", p:["v"], th:"ปรับปรุง, บูรณะ (อาคาร)", ex:"The city plans to renovate the old train station.", f:[["renovation","n"]] },
+  { d:"travel", w:"spacious", p:["adj"], th:"กว้างขวาง", ex:"All rooms are spacious and quiet.", f:[["space","n"],["spaciously","adv"]] },
+  { d:"travel", w:"nearby", p:["adj","adv"], th:"ใกล้เคียง, แถวนี้", ex:"There are several restaurants nearby.", tip:"ใช้ได้ทั้ง adjective (a nearby café) และ adverb (restaurants nearby)" },
+  // marketing
+  { d:"marketing", w:"competitor", p:["n"], th:"คู่แข่ง", ex:"Our main competitor lowered its prices last week.", f:[["compete","v"],["competitive","adj"],["competitively","adv"]] },
+  { d:"marketing", w:"advertise", p:["v"], th:"โฆษณา", ex:"We advertise our products on social media.", f:[["advertisement","n"],["advertiser","n"]] },
+  { d:"marketing", w:"innovative", p:["adj"], th:"เป็นนวัตกรรม, ล้ำสมัย", ex:"The company is known for its innovative designs.", f:[["innovate","v"],["innovation","n"]] },
+  { d:"marketing", w:"survey", p:["n","v"], th:"แบบสำรวจ, การสำรวจ", ex:"Customers were asked to complete a short survey." },
+  { d:"marketing", w:"demand", p:["n","v"], th:"ความต้องการ (ของตลาด); เรียกร้อง", ex:"Demand for electric cars is growing." },
+  { d:"marketing", w:"exclusively", p:["adv"], th:"เฉพาะ, แต่เพียงผู้เดียว", ex:"This offer is available exclusively to members.", f:[["exclusive","adj"],["exclude","v"]] },
+  { d:"marketing", w:"launch", p:["v","n"], th:"เปิดตัว (สินค้า)", ex:"The company will launch a new smartphone in June." },
+  { d:"marketing", w:"persuasive", p:["adj"], th:"ที่โน้มน้าวใจ", ex:"She gave a persuasive presentation to the investors.", f:[["persuade","v"],["persuasion","n"]] },
+  { d:"marketing", w:"consumer", p:["n"], th:"ผู้บริโภค", ex:"Every consumer has the right to a refund.", f:[["consume","v"],["consumption","n"]] },
+  { d:"marketing", w:"increasingly", p:["adv"], th:"มากขึ้นเรื่อยๆ", ex:"Online shopping is increasingly popular.", f:[["increase","v"],["increasing","adj"]] },
+  { d:"marketing", w:"affordable", p:["adj"], th:"ราคาที่จ่ายไหว, ไม่แพง", ex:"We offer high-quality products at affordable prices.", f:[["afford","v"],["affordability","n"]] },
+  { d:"marketing", w:"strategy", p:["n"], th:"กลยุทธ์", ex:"The team developed a new marketing strategy.", f:[["strategic","adj"],["strategically","adv"]] },
+  // grammar / function words
+  { d:"grammar", w:"despite", p:["prep"], g:"concede", th:"แม้ว่า, ทั้งๆ ที่ (+ คำนาม)", ex:"Despite the heavy rain, the outdoor event continued.", tip:"despite + คำนาม / V-ing เท่านั้น ถ้าตามด้วยประโยค (S + V) ต้องใช้ although" },
+  { d:"grammar", w:"although", p:["conj"], g:"concede", th:"แม้ว่า (+ ประโยค)", ex:"Although sales were low, the store stayed open.", tip:"although + ประโยค (S + V) ส่วน despite / in spite of + คำนาม" },
+  { d:"grammar", w:"in spite of", p:["prep"], g:"concede", th:"แม้ว่า, ทั้งๆ ที่ (+ คำนาม)", ex:"In spite of the delay, the project stayed on budget.", tip:"ความหมายเหมือน despite ใช้กับคำนามเหมือนกัน" },
+  { d:"grammar", w:"regarding", p:["prep"], th:"เกี่ยวกับ", ex:"Please contact us regarding any billing questions.", tip:"ลงท้าย -ing แต่ทำหน้าที่เป็น preposition (= about)" },
+  { d:"grammar", w:"throughout", p:["prep"], th:"ตลอด (ช่วงเวลา), ทั่ว (บริเวณ)", ex:"Prices remained stable throughout the year." },
+  { d:"grammar", w:"unless", p:["conj"], th:"เว้นแต่, ถ้าไม่", ex:"Refunds are not given unless a receipt is shown.", tip:"unless = if ... not ห้ามใช้ not ซ้อนในประโยคเดียวกัน" },
+  { d:"grammar", w:"whereas", p:["conj"], th:"ในขณะที่ (เปรียบเทียบความต่าง)", ex:"Sales rose in Asia, whereas they fell in Europe." },
+  { d:"grammar", w:"prior to", p:["prep"], th:"ก่อน", ex:"Please arrive 15 minutes prior to your appointment.", tip:"prior to = before แต่เป็นภาษาทางการ พบบ่อยในอีเมลธุรกิจ" },
+  { d:"grammar", w:"due to", p:["prep"], th:"เนื่องจาก", ex:"The flight was delayed due to bad weather.", tip:"due to + คำนาม ถ้าตามด้วยประโยคใช้ because" },
+  { d:"grammar", w:"whoever", p:["pron"], th:"ใครก็ตามที่", ex:"Whoever finishes the report first can leave early." },
+  { d:"grammar", w:"themselves", p:["pron"], th:"ตัวพวกเขาเอง", ex:"The interns organized the event themselves.", tip:"reflexive pronoun ใช้เมื่อประธานกับกรรมเป็นคนเดียวกัน หรือเน้นว่าทำเอง" },
+  { d:"grammar", w:"whose", p:["pron"], th:"ซึ่ง...ของ (แสดงความเป็นเจ้าของ)", ex:"We hired a designer whose work has won several awards.", tip:"relative pronoun แสดงความเป็นเจ้าของ ตามด้วยคำนามเสมอ (whose work)" },
+  { d:"grammar", w:"each other", p:["pron"], th:"ซึ่งกันและกัน", ex:"Team members should support each other." },
+  { d:"grammar", w:"however", p:["adv"], g:"however", th:"อย่างไรก็ตาม", ex:"Sales were strong; however, profits fell.", tip:"however เป็น adverb ไม่ใช่ conjunction จะเชื่อมสองประโยคต้องมี ; หรือขึ้นประโยคใหม่" },
+  { d:"grammar", w:"nevertheless", p:["adv"], g:"however", th:"ถึงกระนั้น, อย่างไรก็ตาม", ex:"The task was difficult; nevertheless, the team finished on time.", tip:"กับดักบ่อย: ดูเหมือนคำเชื่อม แต่เป็น adverb เหมือน however" },
+  { d:"grammar", w:"once", p:["conj","adv"], th:"ทันทีที่, เมื่อ...แล้ว", ex:"Once the payment is received, we will ship your order.", tip:"ใน TOEIC มักเป็น conjunction (+ ประโยค) แต่ใช้เป็น adverb ได้ด้วย (= ครั้งหนึ่ง)" },
+  { d:"grammar", w:"so that", p:["conj"], th:"เพื่อที่จะ (+ ประโยค)", ex:"Please speak clearly so that everyone can hear you." },
+  { d:"grammar", w:"beneath", p:["prep"], th:"ใต้, ข้างใต้", ex:"Please sign your name beneath the line." },
+  { d:"grammar", w:"besides", p:["prep","adv"], th:"นอกจาก...แล้ว", ex:"Besides a good salary, the job offers flexible hours.", tip:"อย่าสับสนกับ beside (ไม่มี s) = ข้างๆ" },
+];
+
+// suffix rules: what an ending usually signals
+const SUFFIX = [
+  ["tion","n","action"],["sion","n","decision"],["ment","n","agreement"],["ness","n","awareness"],["ity","n","ability"],
+  ["ance","n","performance"],["ence","n","reference"],["ure","n","failure"],["age","n","storage"],
+  ["ee","n","employee"],["er","n","manager"],["or","n","director"],["ant","n","assistant"],["ist","n","analyst"],
+  ["ive","adj","effective"],["ous","adj","various"],["able","adj","available"],["ible","adj","flexible"],["ful","adj","successful"],
+  ["less","adj","careless"],["ial","adj","official"],["al","adj","annual"],["ic","adj","economic"],["ary","adj","necessary"],
+  ["ory","adj","advisory"],["ent","adj","efficient"],["ed","adj","detailed"],
+  ["ly","adv","quickly"],
+  ["ize","v","organize"],["ise","v","advertise"],["ate","v","indicate"],["ify","v","clarify"],
+].sort((a, b) => b[0].length - a[0].length);
+
+
+// ---------------- storage (this device only) ----------------
+const KEY = "toeic-vocab-drill:v1";
+function load() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return {}; } }
+function save() { try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) {} }
+const store = Object.assign({ boxes: {}, mix: "mix", decks: DECKS.map(d => d.k), len: 10 }, load());
+const boxOf = w => store.boxes[w] || 0;
+
+// ---------------- helpers ----------------
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" }[c]));
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const tag = k => `<span class="tag t-${k}">${k}.</span>`;
+const wordRe = w => new RegExp("\\b" + w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b", "i");
+const part5Ok = x => x.f && x.f.length >= 2 && wordRe(x.w).test(x.ex);
+const KEYS = "ABCD";
+const ARROW = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>`;
+
+function suffixClue(x) {
+  if (x.d === "grammar" || x.w.includes(" ")) return null;
+  const r = SUFFIX.find(([s]) => x.w.toLowerCase().endsWith(s));
+  if (!r) return { html: "ไม่มีคำลงท้ายที่ช่วยบอกประเภท ต้องจำจากการใช้ในประโยค" };
+  const [s, pos, sample] = r;
+  if (x.p.includes(pos)) return { html: `ลงท้าย <span class="sx">-${s}</span> มักเป็น <b>${POSMAP[pos].en}</b> เหมือน ${sample}` };
+  return { warn: true, html: `ระวัง: <span class="sx">-${s}</span> ปกติเป็น ${POSMAP[pos].en} แต่คำนี้เป็น <b>${x.p.map(p => POSMAP[p].en).join(" / ")}</b> เป็นข้อยกเว้นที่ต้องจำ` };
+}
+function meaningChoices(x) {
+  const pool = WORDS.filter(o => o !== x && !(x.g && o.g === x.g) && o.th !== x.th);
+  const same = shuffle(pool.filter(o => o.p.some(p => x.p.includes(p))));
+  const other = shuffle(pool.filter(o => !o.p.some(p => x.p.includes(p))));
+  const picks = [];
+  for (const o of [...same, ...other]) { if (picks.length === 3) break; if (!picks.some(p => p.th === o.th)) picks.push(o); }
+  return shuffle([x, ...picks]).map(o => ({ label: o.th, ok: o === x }));
+}
+function part5Choices(x) {
+  return shuffle([{ label: x.w, pos: x.p[0], ok: true }, ...shuffle(x.f).slice(0, 3).map(([w, p]) => ({ label: w, pos: p, ok: false }))]);
+}
+
+// ---------------- session ----------------
+let S;
+function poolFor(decks, mix) { return WORDS.filter(x => decks.includes(x.d) && (mix !== "sentence" || part5Ok(x))); }
+function makeCard(x, retry, type) {
+  type = type || (store.mix === "sentence" ? "sentence" : store.mix === "word" ? "word" : (part5Ok(x) && Math.random() < 0.4 ? "sentence" : "word"));
+  if (type === "sentence" && !part5Ok(x)) type = "word";
+  return { x, retry, type, steps: type === "word" ? ["pos", "meaning"] : ["part5"], si: 0, ans: {}, locked: false, done: false,
+    choices: { meaning: meaningChoices(x), part5: type === "sentence" ? part5Choices(x) : null } };
+}
+function start(words) {
+  const list = words || shuffle(poolFor(store.decks, store.mix)).sort((a, b) => boxOf(a.w) - boxOf(b.w)).slice(0, store.len);
+  S = { queue: shuffle(list).map(x => makeCard(x, false)), i: 0, results: new Map(), summary: false };
+  showCard(true);
+}
+const cur = () => S.queue[S.i];
+const isRight = (c, step) => step === "pos" ? c.x.p.includes(c.ans.pos) : c.choices[step][c.ans[step]].ok;
+
+// ---------------- render ----------------
+function renderTop() {
+  const doneN = S.i + (cur() && cur().done ? 1 : 0);
+  $("#count").textContent = S.summary ? `${S.queue.length} / ${S.queue.length}` : `${S.i + 1} / ${S.queue.length}`;
+  $("#bar").style.width = (S.summary ? 100 : doneN / S.queue.length * 100).toFixed(1) + "%";
+}
+
+function frontHtml(c) {
+  const x = c.x, deck = DECKS.find(d => d.k === x.d).th;
+  let body, foot = "";
+  if (c.type === "word") {
+    body = `<h2 class="word">${esc(x.w)}</h2>`;
+    const st = [];
+    if (c.ans.pos !== undefined) {
+      const ok = isRight(c, "pos");
+      st.push(`<span class="stat ${ok ? "ok" : "bad"}">${ok ? "✓" : "✗"} ประเภทคำ · ${tag(x.p[0])}</span>`);
+    } else st.push(`<span class="stat on">1 ประเภทคำ</span>`);
+    if (c.ans.meaning !== undefined) {
+      const ok = isRight(c, "meaning");
+      st.push(`<span class="stat ${ok ? "ok" : "bad"}">${ok ? "✓" : "✗"} ความหมาย</span>`);
+    } else st.push(`<span class="stat ${c.si === 1 ? "on" : ""}">2 ความหมาย</span>`);
+    foot = st.join("");
+  } else {
+    const s = esc(x.ex).replace(wordRe(esc(x.w)), `<span class="blank"></span>`);
+    body = `<p class="sentence">${s}</p><p class="hint">คำใบ้: ${esc(x.th)}</p>`;
+    foot = c.ans.part5 !== undefined
+      ? `<span class="stat ${isRight(c, "part5") ? "ok" : "bad"}">${isRight(c, "part5") ? "✓ ถูกต้อง" : "✗ ยังไม่ถูก"}</span>`
+      : `<span class="stat on">เลือกรูปคำที่ถูกต้อง</span>`;
+  }
+  return `<div class="f-head"><span class="label">${deck}${c.retry ? " · ทวนอีกครั้ง" : ""}</span><span class="kind">${c.type === "word" ? "คำศัพท์" : "เติมคำ"}</span></div>
+    <div class="f-body">${body}</div><div class="f-foot">${foot}</div>`;
+}
+
+function backHtml(c) {
+  const x = c.x, clue = suffixClue(x);
+  const wrongN = c.steps.filter(s => !isRight(c, s)).length;
+  const ex = esc(x.ex).replace(wordRe(esc(x.w)), m => `<mark>${m}</mark>`);
+  return `<div class="b-scroll">
+    <div class="b-top"><span class="label">${DECKS.find(d => d.k === x.d).th}</span>
+      <span class="badge ${wrongN ? "bad" : "ok"}">${wrongN ? `✗ ผิด ${wrongN} ข้อ` : "✓ ถูกครบ"}</span></div>
+    <div class="b-word"><h2>${esc(x.w)}</h2><div class="tags">${x.p.map(p => `${tag(p)}<span class="label" style="align-self:center">${POSMAP[p].en}</span>`).join("")}</div><p class="th">${esc(x.th)}</p></div>
+    <div class="sec"><span class="label">ประโยคตัวอย่าง</span><p>${ex}</p></div>
+    ${clue ? `<div class="sec"><span class="label">ดูจากคำลงท้าย</span><p class="${clue.warn ? "warn" : ""}">${clue.html}</p></div>` : ""}
+    ${x.f ? `<div class="sec"><span class="label">Word family</span><div class="fam"><span class="me">${esc(x.w)} ${tag(x.p[0])}</span>${x.f.map(([w, p]) => `<span>${esc(w)} ${tag(p)}</span>`).join("")}</div></div>` : ""}
+    ${x.tip ? `<div class="tip">${esc(x.tip)}</div>` : ""}
+    <p class="flipnote">แตะการ์ดเพื่อพลิกกลับไปดูโจทย์</p>
+  </div>`;
+}
+
+function showCard(animate) {
+  const c = cur();
+  $("#scene").innerHTML = `<div class="card3d instant ${animate ? "enter" : ""}" id="card3d">
+      <div class="face front" id="front">${frontHtml(c)}</div>
+      <div class="face back" id="back"></div>
+    </div>`;
+  requestAnimationFrame(() => { const el = $("#card3d"); if (el) el.classList.remove("instant"); });
+  $("#card3d").addEventListener("click", () => { if (cur() && cur().done) $("#card3d").classList.toggle("flipped"); });
+  renderTop(); renderDock();
+}
+
+function renderDock() {
+  const c = cur(), d = $("#dock");
+  if (c.done) {
+    const ok = c.steps.every(s => isRight(c, s));
+    const more = S.i + 1 < S.queue.length;
+    d.innerHTML = `<div class="result"><p>${ok ? `<b>จำได้!</b> ขยับไปกล่อง ${boxOf(c.x.w)}` : c.retry ? "<b>ยังไม่ได้</b> ลองใหม่ในรอบหน้า" : "<b>เดี๋ยวคำนี้จะกลับมาอีก</b> ท้ายรอบ"}</p></div>
+      <button class="btn wide" id="next">${more ? "การ์ดถัดไป" : "ดูสรุปผล"} ${ARROW}</button>`;
+    $("#next").onclick = next;
+    return;
+  }
+  const step = c.steps[c.si], answered = c.ans[step] !== undefined;
+  const mark = (ok, picked) => answered ? (ok ? "right" : picked ? "wrong" : "dim") : "";
+  if (step === "pos") {
+    d.innerHTML = `<div class="ask"><b>คำนี้เป็นคำประเภทไหน?</b><small>1–7</small></div>
+      <div class="posgrid">${POS.map(p => `<button class="opt ${mark(c.x.p.includes(p.k), c.ans.pos === p.k)}" data-v="${p.k}" ${answered ? "disabled" : ""}>
+        <span class="ab">${p.k}.</span><small>${p.th}</small></button>`).join("")}</div>`;
+  } else {
+    const list = c.choices[step];
+    d.innerHTML = `<div class="ask"><b>${step === "meaning" ? "ความหมายคือ?" : "คำไหนเติมในช่องว่าง?"}</b><small>A–D</small></div>
+      <div class="list">${list.map((o, i) => `<button class="opt ${mark(o.ok, c.ans[step] === i)}" data-v="${i}" ${answered ? "disabled" : ""}>
+        <span class="key">${KEYS[i]}</span><span class="t ${step === "part5" ? "en" : ""}">${esc(o.label)}</span>${answered && o.pos ? `<span class="side">${tag(o.pos)}</span>` : ""}</button>`).join("")}</div>`;
+  }
+  d.querySelectorAll("[data-v]").forEach(b => b.onclick = () => answer(step === "pos" ? b.dataset.v : +b.dataset.v));
+}
+
+function answer(v) {
+  const c = cur(); if (!c || c.done || c.locked) return;
+  const step = c.steps[c.si];
+  c.ans[step] = v; c.locked = true;
+  renderDock(); $("#front").innerHTML = frontHtml(c);
+  const last = c.si === c.steps.length - 1;
+  setTimeout(() => {
+    c.locked = false;
+    if (!last) { c.si++; $("#front").innerHTML = frontHtml(c); renderDock(); return; }
+    finish(c);
+  }, isRight(c, step) ? 550 : 950);
+}
+
+function finish(c) {
+  const ok = c.steps.every(s => isRight(c, s));
+  c.done = true;
+  if (!c.retry) {
+    S.results.set(c.x.w, { x: c.x, ok, c });
+    store.boxes[c.x.w] = ok ? Math.min(5, boxOf(c.x.w) + 1) : 1; save();
+    if (!ok) S.queue.push(makeCard(c.x, true, c.type));
+  }
+  $("#back").innerHTML = backHtml(c);
+  $("#card3d").classList.add("flipped");
+  renderTop(); renderDock();
+}
+
+function next() {
+  if (S.i + 1 < S.queue.length) { S.i++; showCard(true); }
+  else summary();
+}
+
+function summary() {
+  S.summary = true; renderTop();
+  const res = [...S.results.values()], good = res.filter(r => r.ok).length, wrong = res.filter(r => !r.ok).map(r => r.x);
+  $("#scene").innerHTML = `<div class="card3d enter"><div class="face"><div class="sum">
+    <span class="label">สรุปรอบนี้</span>
+    <div class="big">${good}<small> / ${res.length}</small></div>
+    <p>${wrong.length ? `ผิด ${wrong.length} คำ คำเหล่านี้กลับไปกล่อง 1 และจะขึ้นก่อนในรอบหน้า` : "ถูกครบทุกคำ ทุกคำขยับขึ้นกล่องแล้ว"}</p>
+    <ul>${res.map(r => `<li><b>${esc(r.x.w)}</b><span>${r.ok ? "✓" : "✗"} ${esc(r.x.th)}</span></li>`).join("")}</ul>
+  </div></div></div>`;
+  $("#dock").innerHTML = `<div class="row2">${wrong.length ? `<button class="btn" id="again-wrong">ทวนคำที่ผิด</button>` : ""}<button class="btn ${wrong.length ? "ghost" : ""}" id="again">ชุดใหม่</button></div>`;
+  if (wrong.length) $("#again-wrong").onclick = () => start(wrong);
+  $("#again").onclick = () => start();
+}
+
+// ---------------- settings sheet ----------------
+function openSettings() {
+  const v = $("#veil"); v.hidden = false;
+  const draw = () => {
+    const n = poolFor(store.decks, store.mix).length;
+    v.innerHTML = `<div class="sheet" role="dialog" aria-label="ตั้งค่า">
+      <div class="grab"></div><h3>ตั้งค่าชุดการ์ด</h3>
+      <div class="group"><span class="label">ประเภทการ์ด</span><div class="seg">
+        ${[["mix","ผสม"],["word","คำศัพท์"],["sentence","เติมประโยค"]].map(([k, t]) => `<button data-mix="${k}" aria-pressed="${store.mix === k}">${t}</button>`).join("")}</div></div>
+      <div class="group"><span class="label">หมวด</span><div class="chips">
+        ${DECKS.map(d => `<button class="chip" data-deck="${d.k}" aria-pressed="${store.decks.includes(d.k)}">${d.th}<em>${poolFor([d.k], store.mix).length}</em></button>`).join("")}</div></div>
+      <div class="group"><span class="label">การ์ดต่อรอบ</span><div class="seg">
+        ${[10, 20, 30].map(k => `<button data-len="${k}" aria-pressed="${store.len === k}">${k}</button>`).join("")}</div></div>
+      <button class="btn wide" id="apply" ${n ? "" : "disabled"}>เริ่มชุดใหม่ ${Math.min(n, store.len)} การ์ด</button>
+    </div>`;
+    v.querySelectorAll("[data-mix]").forEach(b => b.onclick = () => { store.mix = b.dataset.mix; save(); draw(); });
+    v.querySelectorAll("[data-len]").forEach(b => b.onclick = () => { store.len = +b.dataset.len; save(); draw(); });
+    v.querySelectorAll("[data-deck]").forEach(b => b.onclick = () => {
+      const s = new Set(store.decks); s.has(b.dataset.deck) ? s.delete(b.dataset.deck) : s.add(b.dataset.deck); store.decks = [...s]; save(); draw();
+    });
+    $("#apply").onclick = () => { v.hidden = true; start(); };
+  };
+  draw();
+}
+$("#settings").onclick = openSettings;
+$("#veil").addEventListener("click", e => { if (e.target.id === "veil") e.currentTarget.hidden = true; });
+
+// ---------------- keyboard ----------------
+document.addEventListener("keydown", e => {
+  if (e.metaKey || e.ctrlKey || e.altKey || !$("#veil").hidden || !S || S.summary) return;
+  const c = cur();
+  if (c.done) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); next(); } return; }
+  const step = c.steps[c.si], k = e.key.toLowerCase();
+  if (step === "pos") { const n = +k; if (n >= 1 && n <= 7) answer(POS[n - 1].k); }
+  else { let i = "abcd".indexOf(k); if (i < 0 && +k >= 1 && +k <= 4) i = +k - 1; if (i >= 0 && i < c.choices[step].length) answer(i); }
+});
+
+start();
+</script>
