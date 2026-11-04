@@ -1,0 +1,289 @@
+# word|pos|thai meaning|example|family (form:pos,...)|cue
+# word may be "ocr=correct" when the OCR spelling was wrong
+acclaim|n,v|เสียงชื่นชม; ยกย่อง|The film received critical acclaim.|acclaimed:adj|
+accommodate|v|รองรับ, จัดที่พัก|The hall can accommodate 300 guests.|accommodation:n|can + ___ → Verb
+achievement|n|ความสำเร็จ|Winning the award was a great achievement.|achieve:v|a great + ___ → Noun
+actor|n|นักแสดง|The actor will sign autographs after the show.|act:v,acting:n|
+adequate|adj|เพียงพอ|The room has adequate space for ten people.|adequately:adv|has + ___ + space → Adjective
+adjacent|adj|ติดกัน, ใกล้เคียง|The parking lot is adjacent to the building.||
+adjust|v|ปรับ|You can adjust the height of the chair.|adjustment:n,adjustable:adj|can + ___ → Verb
+adjustment|n|การปรับ|We made a few adjustments to the schedule.|adjust:v,adjustable:adj|
+admire|v|ชื่นชม|Visitors admired the view from the tower.|admiration:n|
+advice|n|คำแนะนำ|Please ask our staff for advice.|advise:v,advisor:n|ask our staff for + ___ → Noun
+advise|v|แนะนำ, ให้คำปรึกษา|Passengers are advised to arrive early.|advice:n,advisor:n|
+affairs|n|กิจการ, เรื่อง (public affairs)|She works in the public affairs office.||
+affect|v|ส่งผลกระทบ|The storm may affect flight schedules.|effect:n|may + ___ → Verb
+against|prep|ต่อต้าน; พิงกับ|The ladder is leaning against the wall.||
+agent|n|ตัวแทน|A travel agent booked our flights.|agency:n|
+ago|adv|ที่แล้ว|The store opened ten years ago.||
+agree|v|เห็นด้วย, ตกลง|Both sides agreed to the terms.|agreement:n|
+airport|n|สนามบิน|A shuttle runs to the airport every hour.||
+alert|n,v,adj|การเตือน; เตือน|You will receive an alert when your order ships.||
+always|adv|เสมอ|The staff are always helpful.||
+amazing|adj|น่าทึ่ง|The view from the top is amazing.|amaze:v,amazingly:adv|
+anchor|n,v|ผู้ประกาศข่าว; สมอเรือ|She is a news anchor on Channel 5.||
+announcer|n|ผู้ประกาศ|The announcer called the winner's name.|announce:v,announcement:n|
+anticipate|v|คาดการณ์|We anticipate a busy holiday season.|anticipation:n|We + ___ → Verb
+anytime|adv|เมื่อไหร่ก็ได้|Feel free to call anytime.||
+apartment|n|อพาร์ตเมนต์|The apartment has two bedrooms.||
+apple|n|แอปเปิล|The café sells fresh apple juice.||
+appliance|n|เครื่องใช้ไฟฟ้า|The store sells kitchen appliances.||
+applicant|n|ผู้สมัคร|Each applicant must submit two references.|apply:v,application:n|Each + ___ → Noun
+appreciate|v|ซาบซึ้ง, ขอบคุณ|We appreciate your patience.|appreciation:n,appreciative:adj|We + ___ → Verb
+approve|v|อนุมัติ|The manager must approve all expenses.|approval:n|must + ___ → Verb
+architect|n|สถาปนิก|The architect designed the new library.|architecture:n,architectural:adj|The + ___ + designed → Noun
+arena|n|สนามกีฬาในร่ม|The concert will be held at the city arena.||
+arrangement|n|การจัดเตรียม|Travel arrangements will be made by my assistant.|arrange:v|Travel + ___ → Noun
+aspect|n|แง่มุม|The course covers every aspect of marketing.||
+assemble|v|ประกอบ; รวมตัว|The desk is easy to assemble.|assembly:n|easy to + ___ → Verb
+assignment|n|งานที่ได้รับมอบหมาย|Each intern will receive an assignment.|assign:v|an + ___ → Noun
+attachment|n|ไฟล์แนบ|Please see the attachment for details.|attach:v|the + ___ → Noun
+authentic|adj|แท้, ต้นตำรับ|The restaurant serves authentic Italian food.|authenticity:n|serves + ___ + Italian food → Adjective
+avenue|n|ถนน (ใหญ่)|The bank is on Fifth Avenue.||
+await|v|รอคอย|We await your reply.||
+bad|adj|แย่, ไม่ดี|The flight was delayed due to bad weather.||
+baker|n|คนทำขนมปัง|The baker opens the shop at 6 A.M.|bakery:n|
+barge|n|เรือบรรทุกสินค้า|A barge is carrying goods down the river.||
+barn|n|ยุ้งฉาง, โรงนา|The farm has a large red barn.||
+base|n,v|ฐาน; ตั้งอยู่|The company is based in Chicago.|basic:adj|
+bay|n|อ่าว; ช่องจอด (loading bay)|Trucks unload at the loading bay.||
+bear|v|แบก; มี (bear a name)|The building bears the founder's name.||
+beautifully|adv|อย่างสวยงาม|The room is beautifully decorated.|beautiful:adj,beauty:n|is + ___ + decorated → Adverb
+bedroom|n|ห้องนอน|The apartment has three bedrooms.||
+below|prep,adv|ข้างล่าง, ต่ำกว่า|Please see the chart below.||
+better|adj,adv|ดีกว่า|The new model works better.||
+beverage|n|เครื่องดื่ม|Food and beverages are not allowed inside.||
+bite|n,v|คำ (อาหาร); กัด|Grab a quick bite at the café.||
+blade|n|ใบมีด|Replace the blade every six months.||
+blend|n,v|ส่วนผสม; ผสม|The coffee is a blend of two beans.||
+block|n,v|ช่วงถนน; ปิดกั้น|The store is two blocks from the station.||
+borrow|v|ยืม|You can borrow up to five books.||
+bottom|n|ด้านล่าง|Sign at the bottom of the page.||
+branch|n|สาขา|The bank opened a new branch downtown.||
+break|n,v|การพัก; ทำแตก|Let's take a 10-minute break.||
+budgetary|adj|เกี่ยวกับงบประมาณ|The project was canceled for budgetary reasons.|budget:n|for + ___ + reasons → Adjective
+cabinet|n|ตู้|The files are kept in a locked cabinet.||
+camera|n|กล้อง|Security cameras are installed in the lobby.||
+camment=comment|n,v|ความคิดเห็น; แสดงความคิดเห็น|Please send your comments by Friday.||
+campaign|n|แคมเปญ|The ad campaign starts next month.||
+canversion=conversion|n|การเปลี่ยน, การแปลง|The conversion of the warehouse into offices is complete.|convert:v|
+capacity|n|ความจุ|The theater has a capacity of 500.||
+car|n|รถยนต์|You can rent a car at the airport.||
+carpenter|n|ช่างไม้|A carpenter is fixing the door.||
+case|n|กรณี; กล่อง|In case of fire, use the stairs.||
+cat|n|แมว|Pets such as cats are not allowed.||
+cater|v|จัดเลี้ยง|The company will cater the event.|caterer:n,catering:n|will + ___ → Verb
+caterer|n|ผู้จัดเลี้ยง|We hired a caterer for the party.|cater:v,catering:n|hired a + ___ → Noun
+center|n|ศูนย์|The conference center is near the airport.||
+championship|n|การแข่งขันชิงแชมป์|The team won the national championship.||
+charge|n,v|ค่าธรรมเนียม; เรียกเก็บเงิน|There is no charge for delivery.||
+cherry|n|เชอร์รี่|Cherry trees line the street.||
+chip|n|ชิป; มันฝรั่งทอด|The phone has a faster chip.||
+choice|n|ตัวเลือก|You have a choice of three meals.|choose:v|
+choose|v|เลือก|Please choose a seat.|choice:n|Please + ___ → Verb
+chronicle|n,v|บันทึกเหตุการณ์|The book chronicles the history of the city.||
+clarity|n|ความชัดเจน|The new screen offers better clarity.|clear:adj,clarify:v|offers better + ___ → Noun
+click|v,n|คลิก|Click the link to register.||
+club|n|ชมรม, สโมสร|She joined the book club.||
+coach|n,v|โค้ช; รถโค้ช|The team hired a new coach.||
+colleague|n|เพื่อนร่วมงาน|Please share the file with your colleagues.||
+collection|n|การสะสม, คอลเลกชัน|The museum has a large art collection.|collect:v,collector:n|a large art + ___ → Noun
+color|n|สี|The bag comes in three colors.|colorful:adj|
+come|v|มา|Please come to the front desk.||
+commercial|adj,n|ทางการค้า; โฆษณา|The building is for commercial use.|commerce:n,commercially:adv|for + ___ + use → Adjective
+compare|v|เปรียบเทียบ|Compare prices before you buy.|comparison:n,comparable:adj|
+comparison|n|การเปรียบเทียบ|The chart shows a comparison of sales.|compare:v,comparable:adj|a + ___ + of sales → Noun
+compete|v|แข่งขัน|Ten teams will compete in the final.|competition:n,competitive:adj,competitor:n|will + ___ → Verb
+competence|n|ความสามารถ|Managers assess the competence of new staff.|competent:adj|the + ___ + of → Noun
+competitor|n|คู่แข่ง|Our competitor lowered its prices.|compete:v,competitive:adj|Our + ___ → Noun
+complain|v|บ่น, ร้องเรียน|Several guests complained about the noise.|complaint:n|
+complement|v,n|ส่งเสริมกัน, เติมเต็ม|The wine complements the meal.|complementary:adj|
+completion|n|การทำเสร็จ|Payment is due upon completion of the work.|complete:v,completely:adv|upon + ___ → Noun
+complex|n,adj|อาคารรวม; ซับซ้อน|The office complex has a gym.||
+concrete|n,adj|คอนกรีต; เป็นรูปธรรม|We need concrete plans by Friday.||
+conduct|v,n|ดำเนินการ; ความประพฤติ|We will conduct a survey next month.||
+conflict|n|ความขัดแย้ง; เวลาชนกัน|I have a scheduling conflict on Monday.||
+connect|v|เชื่อมต่อ|Connect the printer to your computer.|connection:n|
+conservatory|n|เรือนกระจก; วิทยาลัยดนตรี|She studied piano at the music conservatory.||
+considerably|adv|อย่างมาก|Prices have risen considerably.|considerable:adj|have risen + ___ → Adverb
+construct|v|ก่อสร้าง|The city will construct a new bridge.|construction:n|will + ___ → Verb
+container|n|ภาชนะ, ตู้คอนเทนเนอร์|Store food in airtight containers.|contain:v|
+continental|adj|แบบภาคพื้นทวีป (continental breakfast)|A continental breakfast is included.||
+continually|adv|อย่างต่อเนื่อง|We are continually improving our service.|continual:adj,continue:v|are + ___ + improving → Adverb
+contractor|n|ผู้รับเหมา|The contractor finished the work early.|contract:n|The + ___ + finished → Noun
+conveniently|adv|อย่างสะดวก|The hotel is conveniently located.|convenient:adj,convenience:n|is + ___ + located → Adverb
+convert|v|เปลี่ยน, แปลง|The old factory was converted into apartments.|conversion:n|
+coordinator|n|ผู้ประสานงาน|The event coordinator will contact you.|coordinate:v,coordination:n|The event + ___ → Noun
+corner|n|มุม|The bank is on the corner of Main Street.||
+corporation|n|บริษัท (ขนาดใหญ่)|She works for a large corporation.|corporate:adj|
+correct|adj,v|ถูกต้อง; แก้ไข|Please correct the errors in the report.|correctly:adv,correction:n|
+courtesy|n,adj|ความสุภาพ; ฟรี (courtesy shuttle)|The hotel offers a courtesy shuttle.|courteous:adj|
+cover|v,n|ครอบคลุม; ปก|The insurance covers all repairs.||
+crane|n|เครนยกของ|A crane is lifting steel beams.||
+crew|n|ลูกเรือ, ทีมงาน|The cleaning crew comes in at night.||
+critic|n|นักวิจารณ์|Food critics praised the new restaurant.|criticism:n,critical:adj|
+cup|n|ถ้วย|Free cups of coffee are available.||
+debut|n,v|การเปิดตัวครั้งแรก|The product will make its debut in May.||
+decade|n|ทศวรรษ|The firm has been in business for a decade.||
+decor|n|การตกแต่ง|The hotel's decor is modern.|decorate:v,decoration:n|
+decrease|n,v|การลดลง; ลดลง|Sales decreased by 5 percent.||
+defect|n|ข้อบกพร่อง|Please report any defects in the product.|defective:adj|
+delete|v|ลบ|Please delete the old files.||
+demand|n,v|ความต้องการ; เรียกร้อง|Demand for the product is high.||
+demonstration|n|การสาธิต|The sales rep gave a product demonstration.|demonstrate:v|a product + ___ → Noun
+denation=donation|n|การบริจาค|The museum received a large donation.|donate:v,donor:n|a large + ___ → Noun
+departure|n|การออกเดินทาง|Please arrive one hour before departure.|depart:v|before + ___ → Noun
+destination|n|จุดหมายปลายทาง|Bali is a popular travel destination.||
+determined|adj|มุ่งมั่น|She is determined to succeed.|determine:v,determination:n|
+dinner|n|อาหารเย็น|Dinner will be served at 7 P.M.||
+discourage|v|ห้ามปราม, ทำให้ท้อ|High prices discourage new customers.|encourage:v|
+dispose|v|กำจัด, ทิ้ง (dispose of)|Please dispose of trash properly.|disposal:n|
+disrupt|v|รบกวน, ทำให้หยุดชะงัก|The strike disrupted train services.|disruption:n,disruptive:adj|
+dog|n|สุนัข|Dogs are not allowed in the store.||
+donate|v|บริจาค|We donate a portion of sales to charity.|donation:n,donor:n|We + ___ → Verb
+door|n|ประตู|Please close the door behind you.||
+double|adj,v|สองเท่า; เพิ่มเป็นสองเท่า|Sales doubled last year.||
+draw|v|วาด; ดึงดูด|The festival draws thousands of visitors.||
+dream|n|ความฝัน|She opened her dream restaurant.||
+driver|n|คนขับ|The driver will pick you up at 8 A.M.|drive:v|
+dub|v|ขนานนาม; พากย์|Critics dubbed it the best film of the year.||
+due|adj|ครบกำหนด; เนื่องจาก (due to)|The report is due on Friday.||
+durable|adj|ทนทาน|The bags are made of durable material.|durability:n|of + ___ + material → Adjective
+east|n,adj|ทิศตะวันออก|The hotel is east of the river.|eastern:adj|
+econamical=economical|adj|ประหยัด|The new car is very economical.|economy:n,economically:adv|is very + ___ → Adjective
+edition|n|ฉบับ (พิมพ์)|The new edition will be published in May.|edit:v,editor:n|The new + ___ → Noun
+efficient|adj|มีประสิทธิภาพ|The new system is more efficient.|efficiency:n,efficiently:adv|is more + ___ → Adjective
+electricity|n|ไฟฟ้า|The building uses solar electricity.|electric:adj,electrical:adj|
+element|n|องค์ประกอบ|Design is a key element of the product.||
+eliminate|v|กำจัด, ตัดออก|The new process will eliminate errors.|elimination:n|will + ___ → Verb
+enable|v|ทำให้สามารถ|The app enables users to pay by phone.||
+engineer|n|วิศวกร|An engineer will inspect the bridge.|engineering:n|
+enrollment|n|การลงทะเบียนเรียน|Enrollment for the course is now open.|enroll:v|___ + for the course → Noun
+entertain|v|ให้ความบันเทิง; รับรอง (แขก)|The band will entertain guests.|entertainment:n|will + ___ → Verb
+entire|adj|ทั้งหมด|The entire staff attended the meeting.|entirely:adv|The + ___ + staff → Adjective
+equal|adj|เท่ากัน|All employees have equal opportunities.|equally:adv,equality:n|have + ___ + opportunities → Adjective
+essential|adj|จำเป็น|Experience is essential for this job.|essentially:adv|is + ___ → Adjective
+estimate|n,v|การประเมินราคา; ประมาณ|Please send us a cost estimate.|estimated:adj|a cost + ___ → Noun
+eventually|adv|ในที่สุด|The project was eventually completed.|eventual:adj|was + ___ + completed → Adverb
+ever|adv|เคย|Have you ever visited Japan?||
+exception|n|ข้อยกเว้น|There are no exceptions to the rule.|exceptional:adj,except:prep|no + ___ → Noun
+exceptionally|adv|อย่างโดดเด่น|The staff were exceptionally helpful.|exceptional:adj,exception:n|were + ___ + helpful → Adverb
+exciting|adj|น่าตื่นเต้น|We have exciting news to share.|excite:v,excited:adj,excitement:n|have + ___ + news → Adjective
+existing|adj|ที่มีอยู่|The offer is for existing customers.|exist:v,existence:n|for + ___ + customers → Adjective
+exit|n,v|ทางออก|Please use the rear exit.||
+expansion|n|การขยาย|The expansion of the factory is complete.|expand:v|The + ___ + of → Noun
+expense|n|ค่าใช้จ่าย|Travel expenses will be reimbursed.|expensive:adj|Travel + ___ → Noun
+expensive|adj|แพง|The hotel is expensive but comfortable.|expense:n|is + ___ → Adjective
+expire|v|หมดอายุ|Your membership expires next month.|expiration:n|
+extremely|adv|อย่างมาก|The new phone is extremely popular.|extreme:adj|is + ___ + popular → Adverb
+family|n|ครอบครัว|It is a family-owned business.||
+fan|n|แฟน (ผู้ชื่นชอบ); พัดลม|Fans lined up for the concert.||
+far|adv,adj|ไกล|The hotel is not far from the beach.||
+fast|adj,adv|เร็ว|The new printer is very fast.||
+faucet|n|ก๊อกน้ำ|The kitchen faucet is leaking.||
+faulty|adj|ชำรุด|Please return any faulty items.|fault:n|any + ___ + items → Adjective
+favor|n|ความโปรดปราน, ความช่วยเหลือ|Could you do me a favor?|favorable:adj,favorite:adj|
+favorable|adj|ดี, เป็นประโยชน์|The plan received favorable reviews.|favor:n,favorably:adv|received + ___ + reviews → Adjective
+favorably|adv|อย่างดี, ในทางที่ดี|Critics reviewed the film favorably.|favorable:adj,favor:n|reviewed the film + ___ → Adverb
+feel|v|รู้สึก|Please feel free to ask questions.||
+fertilizer|n|ปุ๋ย|Organic fertilizer is used on the farm.|fertilize:v|
+festival|n|เทศกาล|The food festival starts on Friday.||
+finale|n|ตอนจบ, ช่วงไคลแมกซ์|The fireworks were the finale of the show.||
+finally|adv|ในที่สุด|The package finally arrived.|final:adj|The package + ___ + arrived → Adverb
+fleet|n|กองยานพาหนะ|The company has a fleet of 50 trucks.||
+float|v|ลอย|Boats are floating in the harbor.||
+flyer|n|ใบปลิว|Please hand out flyers at the entrance.||
+foot|n|เท้า; ฟุต|The warehouse is 10,000 square feet.||
+forget|v|ลืม|Don't forget to sign the form.||
+forum|n|เวทีเสวนา|The city held a public forum on traffic.||
+friend|n|เพื่อน|Bring a friend for free.|friendly:adj|
+friendly|adj|เป็นมิตร|The staff are friendly and helpful.|friend:n|are + ___ → Adjective
+fruit|n|ผลไม้|Fresh fruit is served at breakfast.||
+function|n,v|การทำงาน; งานเลี้ยง|The hotel hosts business functions.|functional:adj|
+furniture|n|เฟอร์นิเจอร์|The office furniture will be delivered on Monday.||
+garbage|n|ขยะ|Please put garbage in the bin.||
+garden|n|สวน|The hotel has a beautiful garden.||
+gas|n|แก๊ส; น้ำมัน|Gas prices rose this month.||
+generous|adj|ใจกว้าง|Thank you for your generous donation.|generosity:n,generously:adv|your + ___ + donation → Adjective
+gift|n|ของขวัญ|All guests will receive a gift.||
+glad|adj|ยินดี|We are glad to help.||
+grab|v|คว้า; หยิบ (grab a coffee)|Let's grab lunch after the meeting.||
+grade|n|เกรด, ระดับ|We use only high-grade materials.||
+grower|n|ผู้ปลูก|Local growers sell fruit at the market.|grow:v|
+guarantee|n,v|การรับประกัน; รับประกัน|We guarantee delivery within 48 hours.||
+half|n|ครึ่ง|Half of the staff work remotely.||
+happen|v|เกิดขึ้น|What happened at the meeting?||
+happy|adj|มีความสุข, ยินดี|We are happy to answer your questions.|happily:adv|
+hard|adj,adv|ยาก; อย่างหนัก|The team worked hard on the project.|hardly:adv|
+harmonize|v|ประสานกลมกลืน|The colors harmonize well.|harmony:n|
+harvest|n,v|การเก็บเกี่ยว|The apple harvest begins in September.||
+heavy|adj|หนัก|Heavy rain is expected tomorrow.|heavily:adv|
+hedge|n|รั้วต้นไม้|A gardener is trimming the hedge.||
+herb|n|สมุนไพร|The chef grows fresh herbs.|herbal:adj|
+herbicide|n|ยาฆ่าวัชพืช|The farm does not use herbicides.||
+hill|n|เนินเขา|The hotel sits on a hill.||
+historic|adj|มีความสำคัญทางประวัติศาสตร์|The tour visits a historic castle.|history:n,historical:adj|a + ___ + castle → Adjective
+hit|v,n|ตี; ความสำเร็จ (เป็นที่นิยม)|The new product was a big hit.||
+holder|n|ผู้ถือ|Ticket holders may enter first.|hold:v|
+hometown|n|บ้านเกิด|She returned to her hometown.||
+household|n,adj|ครัวเรือน|The store sells household goods.||
+however|adv|อย่างไรก็ตาม|The hotel is small; however, it is comfortable.||
+identical|adj|เหมือนกันทุกประการ|The two forms are identical.|identically:adv|are + ___ → Adjective
+identify|v|ระบุ|Please identify yourself at the gate.|identification:n,identity:n|Please + ___ → Verb
+image|n|ภาพ|Click the image to enlarge it.||
+implement|v|นำไปปฏิบัติ|We will implement the new policy next month.|implementation:n|will + ___ → Verb
+inaugurate|v|เปิด (อย่างเป็นทางการ)|The mayor will inaugurate the new bridge.|inauguration:n,inaugural:adj|
+incentive|n|สิ่งจูงใจ|Staff receive incentives for meeting targets.||
+inconvenience|n|ความไม่สะดวก|We apologize for any inconvenience.|inconvenient:adj|any + ___ → Noun
+incorrectly|adv|อย่างไม่ถูกต้อง|The address was entered incorrectly.|incorrect:adj|was entered + ___ → Adverb
+individual|n,adj|บุคคล; เฉพาะคน|Each individual will receive a badge.|individually:adv|
+indoor|adj|ในร่ม|The hotel has an indoor pool.|indoors:adv|an + ___ + pool → Adjective
+inexpensive|adj|ราคาไม่แพง|The café serves inexpensive meals.|expensive:adj|serves + ___ + meals → Adjective
+innovate|v|สร้างสิ่งใหม่|Companies must innovate to compete.|innovation:n,innovative:adj|must + ___ → Verb
+inquiry|n|การสอบถาม|We received your inquiry about prices.|inquire:v|your + ___ → Noun
+install|v|ติดตั้ง|A technician will install the software.|installation:n|will + ___ → Verb
+installation|n|การติดตั้ง|Installation takes about an hour.|install:v|___ + takes → Noun
+instead|adv|แทน|The meeting will be held online instead.||
+instruct|v|สั่ง, สอน|Staff were instructed to lock all doors.|instruction:n,instructor:n|
+insurance|n|ประกัน|The job includes health insurance.|insure:v|
+interfere|v|รบกวน, แทรกแซง|Noise may interfere with the recording.|interference:n|
+invest|v|ลงทุน|The firm plans to invest in new technology.|investment:n,investor:n|plans to + ___ → Verb
+investigate|v|สืบสวน, ตรวจสอบ|We will investigate the problem.|investigation:n|will + ___ → Verb
+investment|n|การลงทุน|The new machine is a good investment.|invest:v,investor:n|a good + ___ → Noun
+invoice|n|ใบแจ้งหนี้|Please pay the invoice within 30 days.||
+judge|n,v|ผู้ตัดสิน; ตัดสิน|The judges will announce the winner.||
+kitchen|n|ห้องครัว|The kitchen is open until 10 P.M.||
+kitchenette|n|ครัวขนาดเล็ก|Each room has a kitchenette.||
+kitchenware|n|เครื่องครัว|The store sells kitchenware.||
+labor|n|แรงงาน|Labor costs have increased.||
+landscape|n,v|ภูมิทัศน์; จัดสวน|The company landscapes office parks.|landscaping:n|
+late|adj,adv|สาย, ล่าช้า|The train was 20 minutes late.|lately:adv,lateness:n|
+lately|adv|เมื่อเร็วๆ นี้|Sales have been slow lately.|late:adj|
+lateness|n|การมาสาย|Repeated lateness is not acceptable.|late:adj|Repeated + ___ → Noun
+later|adv|ภายหลัง|Please call back later.||
+law|n|กฎหมาย|She works at a law firm.|legal:adj,lawyer:n|
+leadership|n|ความเป็นผู้นำ|The course develops leadership skills.|lead:v,leader:n|develops + ___ + skills → Noun
+legal|adj|ทางกฎหมาย|Please consult our legal department.|law:n,legally:adv|our + ___ + department → Adjective
+lend|v|ให้ยืม|The bank will lend money to small businesses.|lender:n,loan:n|will + ___ → Verb
+letter|n|จดหมาย|Please send a cover letter with your résumé.||
+level|n|ระดับ|The parking garage has four levels.||
+license|n|ใบอนุญาต|A driver's license is required.||
+lift|v,n|ยก|Do not lift heavy boxes alone.||
+light|n,adj|ไฟ; เบา|The laptop is light and thin.|lightly:adv|
+lightweight|adj|น้ำหนักเบา|The jacket is lightweight and warm.||
+like|v,prep|ชอบ; เหมือน|We would like to thank our sponsors.||
+likely|adj,adv|น่าจะ|Prices are likely to rise.|likelihood:n|are + ___ + to → Adjective
+limit|n,v|ขีดจำกัด; จำกัด|There is a limit of two items per customer.|limitation:n,limited:adj|
+limitation|n|ข้อจำกัด|The software has some limitations.|limit:v,limited:adj|some + ___ → Noun
+line|n|แถว; สาย|Please wait in line.||
+link|n,v|ลิงก์; เชื่อมโยง|Click the link below.||
+list|n,v|รายการ|Please see the list of speakers.|listing:n|
+listing|n|รายการประกาศ (ขาย/เช่า)|The job listing is posted online.|list:n|
+live|v,adj|อาศัย; สด|The concert will be broadcast live.||
+loan|n|เงินกู้|The bank approved the loan.|lend:v,lender:n|approved the + ___ → Noun
+lost|adj|หาย|Please report lost items to security.||
+lot|n|ลานจอดรถ; จำนวนมาก|Park in the lot behind the building.||
+lounge|n|ห้องพักรับรอง|Coffee is served in the lounge.||
+low|adj|ต่ำ|We offer low prices every day.||
+luck|n|โชค|Good luck with your interview!|lucky:adj|
+luggage|n|กระเป๋าเดินทาง|Please do not leave your luggage unattended.||
