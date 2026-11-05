@@ -1,0 +1,6 @@
+{
+  // Cloudflare Workers static site: serves public/ as-is, no build step needed.
+  "name": "toeic-vocab",
+  "compatibility_date": "2025-10-01",
+  "assets": { "directory": "./public" }
+}
