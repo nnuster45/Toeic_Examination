@@ -24,12 +24,24 @@ for f in sorted(glob.glob(os.path.join(ROOT, "data", "curated", "*.tsv"))):
             raise SystemExit(f"{f}:{n}: expected 6 fields, got {len(row)}")
         cur.append(row)
 
+senses = []
+for f in sorted(glob.glob(os.path.join(ROOT, "data", "senses", "*.tsv"))):
+    for n, line in enumerate(open(f, encoding="utf-8"), 1):
+        line = line.rstrip("\n")
+        if not line.strip() or line.startswith("#"):
+            continue
+        row = line.split("|")
+        if len(row) != 5:
+            raise SystemExit(f"{f}:{n}: expected 5 fields, got {len(row)}")
+        senses.append(row)
+
 js = lambda v: json.dumps(v, ensure_ascii=False, separators=(",", ":"))
 s = open(APP, encoding="utf-8").read()
 s = re.sub(r"const BOOK = \[.*?\];\n", lambda m: f"const BOOK = {js(book)};\n", s, count=1, flags=re.S)
 s = re.sub(r"const CUR = \[.*?\];\n", lambda m: f"const CUR = {js(cur)};\n", s, count=1, flags=re.S)
+s = re.sub(r"const SENSES = \[.*?\];\n", lambda m: f"const SENSES = {js(senses)};\n", s, count=1, flags=re.S)
 open(APP, "w", encoding="utf-8").write(s)
-print(f"BOOK {len(book)} words, CUR {len(cur)} proofread rows -> {APP}")
+print(f"BOOK {len(book)} words, CUR {len(cur)} proofread rows, SENSES {len(senses)} rows -> {APP}")
 
 # Standalone site for Cloudflare (public/index.html): the artifact file has no document skeleton, so add one.
 HEAD = """<!doctype html>

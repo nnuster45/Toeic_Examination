@@ -1,0 +1,465 @@
+# word|pos|type (ชนิดย่อย)|thai meaning|example
+safeguard|v|+ กรรม|ปกป้อง|We safeguard customer data.
+safeguard|n|นับได้|มาตรการป้องกัน|The system has several safeguards.
+sample|n|นับได้|ตัวอย่าง (สินค้า)|Free samples are available.
+sample|v|+ กรรม|ลองชิม, ลองใช้|Visitors can sample local food.
+schedule|n|นับได้|ตารางเวลา|The schedule has changed.
+schedule|v|+ กรรม (มัก passive)|กำหนดเวลา|The meeting is scheduled for 3 P.M.
+seat|n|นับได้|ที่นั่ง|Please take a seat.
+seat|v|+ จำนวนคน|จุคนนั่งได้; พาไปนั่ง|The hall seats 500 people.
+secret|n|นับได้|ความลับ|The recipe is a secret.
+secret|adj|หน้านาม|ลับ|They have a secret menu.
+set|v|+ กรรม|ตั้ง, กำหนด|We set a goal of 1,000 sales.
+set|n|นับได้|ชุด|The kit comes with a set of tools.
+share|v|+ กรรม|แบ่งปัน|Please share the file with the team.
+share|n|นับได้|หุ้น; ส่วนแบ่ง|The company sold shares to investors.
+shift|n|นับได้|กะทำงาน; การเปลี่ยนแปลง|She works the night shift.
+shift|v|+ กรรม / ไม่มีกรรม|เปลี่ยน, ย้าย|Demand has shifted to online sales.
+ship|v|+ กรรม|จัดส่ง|We ship orders worldwide.
+ship|n|นับได้|เรือ|The cruise ship docks at noon.
+shop|n|นับได้|ร้านค้า|The gift shop is on the first floor.
+shop|v|ไม่มีกรรม (shop for)|ซื้อของ|Many people shop online.
+show|v|+ กรรม|แสดง|The chart shows a rise in sales.
+show|n|นับได้|การแสดง; งานแสดง|The trade show is in May.
+sign|v|+ กรรม|ลงชื่อ|Please sign the contract.
+sign|n|นับได้|ป้าย; สัญญาณ|Follow the signs to the exit.
+since|prep|+ จุดเวลา|ตั้งแต่|She has worked here since 2018.
+since|conj|+ ประโยค|เนื่องจาก; ตั้งแต่|Since the store is closed, we will come back.
+slip|v|ไม่มีกรรม|ลื่น|Be careful not to slip on the wet floor.
+slip|n|นับได้|ใบ (เอกสารสั้น)|Keep your payment slip.
+some|adj|หน้านาม (determiner)|บาง, จำนวนหนึ่ง|Some items are out of stock.
+some|pron|ใช้แทนนาม|บางส่วน|Some of the staff work from home.
+south|n|นับไม่ได้|ทิศใต้|The airport is to the south of the city.
+south|adj|หน้านาม|ทางทิศใต้|Use the south entrance.
+special|adj|หน้านาม|พิเศษ|We offer a special discount.
+special|n|นับได้|เมนูพิเศษ, โปรโมชั่น|Today's special is salmon.
+sponsor|n|นับได้|ผู้สนับสนุน|The event has three sponsors.
+sponsor|v|+ กรรม|สนับสนุน|A local bank sponsors the race.
+standard|n|นับได้|มาตรฐาน|All rooms meet safety standards.
+standard|adj|หน้านาม|มาตรฐาน, ปกติ|A standard room costs $90.
+star|n|นับได้|ดาว; คนดัง|The hotel has a five-star rating.
+star|v|ไม่มีกรรม (star in)|แสดงนำ|She stars in a new film.
+start|v|+ กรรม / ไม่มีกรรม|เริ่ม|The tour starts at 9.
+start|n|นับได้|การเริ่มต้น|We are off to a good start.
+stream|v|+ กรรม|ถ่ายทอดสด|The event will be streamed online.
+stream|n|นับได้|ลำธาร; กระแส|A stream runs behind the hotel.
+supply|n|นับได้ (มักพหูพจน์)|อุปกรณ์, ของใช้|Office supplies are in the closet.
+supply|v|+ กรรม|จัดหา|The firm supplies parts to car makers.
+support|n|นับไม่ได้|การสนับสนุน|Thank you for your support.
+support|v|+ กรรม|สนับสนุน|We support local farmers.
+surprise|n|นับได้|ความประหลาดใจ|The news came as a surprise.
+surprise|v|+ กรรม|ทำให้ประหลาดใจ|The results surprised everyone.
+survey|n|นับได้|แบบสำรวจ|Please complete the survey.
+survey|v|+ กรรม|สำรวจ|We surveyed 500 customers.
+text|n|นับได้ / นับไม่ได้|ข้อความ|Read the text carefully.
+text|v|+ กรรม|ส่งข้อความ|We will text you a code.
+today|adv|ขยายกริยา|วันนี้|The store closes early today.
+today|n|นับไม่ได้|วันนี้, ปัจจุบัน|Today's meeting is canceled.
+tomorrow|adv|ขยายกริยา|พรุ่งนี้|The report is due tomorrow.
+tomorrow|n|นับไม่ได้|วันพรุ่งนี้|Tomorrow's weather will be sunny.
+top|adj|หน้านาม|สูงสุด, อันดับหนึ่ง|Safety is our top priority.
+top|n|นับได้|ด้านบน|Write your name at the top of the page.
+total|n|นับได้|ยอดรวม|The total is $50.
+total|adj|หน้านาม|ทั้งหมด|The total cost is $250.
+tour|n|นับได้|ทัวร์, การเยี่ยมชม|A guided tour starts every hour.
+tour|v|+ กรรม|เยี่ยมชม|Visitors can tour the factory.
+train|v|+ กรรม|ฝึกอบรม|All staff will be trained.
+train|n|นับได้|รถไฟ|The train leaves at 7.
+underwater|adj|หน้านาม|ใต้น้ำ|The tour includes underwater photos.
+underwater|adv|ขยายกริยา|ใต้น้ำ|Divers can stay underwater for an hour.
+up|adv|ขยายกริยา|ขึ้น|Prices went up.
+up|prep|+ นาม|ขึ้นไปตาม|Walk up the stairs.
+update|v|+ กรรม|อัปเดต|Please update your address.
+update|n|นับได้|ข้อมูลอัปเดต|We will send you an update.
+upstairs|adv|ขยายกริยา|ขึ้นชั้นบน|The meeting room is upstairs.
+upstairs|adj|หน้านาม|ชั้นบน|The upstairs office is quiet.
+use|v|+ กรรม|ใช้|Please use the side door.
+use|n|นับไม่ได้|การใช้|The room is for staff use only.
+view|n|นับได้|วิว; ความคิดเห็น|The room has an ocean view.
+view|v|+ กรรม|ดู|You can view your bill online.
+visit|v|+ กรรม|เยี่ยมชม|Visit our website.
+visit|n|นับได้|การเยี่ยม|Thank you for your visit.
+volunteer|n|นับได้ (คน)|อาสาสมัคร|We need ten volunteers.
+volunteer|v|volunteer to + V|อาสา|She volunteered to lead the project.
+watch|v|+ กรรม|ดู|Please watch the safety video.
+watch|n|นับได้|นาฬิกาข้อมือ|The store sells watches.
+weekly|adj|หน้านาม|รายสัปดาห์|We hold weekly meetings.
+weekly|adv|ขยายกริยา|ทุกสัปดาห์|The magazine is published weekly.
+welcome|v|+ กรรม|ต้อนรับ|We welcome new members.
+welcome|adj|หลัง be|ยินดี (you're welcome to)|You are welcome to join us.
+welcome|n|นับได้|การต้อนรับ|Thank you for the warm welcome.
+wish|v|wish to + V|ปรารถนา|We wish you a happy holiday.
+wish|n|นับได้|ความปรารถนา|Best wishes for your new job.
+yield|v|+ กรรม|ให้ผล|The plan yielded good results.
+yield|n|นับได้|ผลผลิต|The farm had a high yield this year.
+acclaim|n|นับไม่ได้|เสียงชื่นชม|The film received critical acclaim.
+acclaim|v|+ กรรม (มัก passive)|ยกย่อง|The chef is acclaimed for her cooking.
+alert|n|นับได้|การเตือน|You will get an alert by text.
+alert|v|+ กรรม|เตือน, แจ้ง|We will alert you when the item is back.
+alert|adj|หลัง be|ตื่นตัว|Drivers must stay alert.
+anchor|n|นับได้ (คน)|ผู้ประกาศข่าว; สมอ|She is a news anchor.
+anchor|v|+ กรรม|ทอดสมอ; ยึด|The boat is anchored in the bay.
+base|n|นับได้|ฐาน|The company has a large customer base.
+base|v|be based in / on|ตั้งอยู่ที่; อิงจาก|The firm is based in London.
+below|prep|+ นาม|ต่ำกว่า|Prices are below average.
+below|adv|ขยายกริยา|ข้างล่าง|See the chart below.
+better|adj|หน้านาม / หลัง be|ดีกว่า|The new model is better.
+better|adv|ขยายกริยา|ดีกว่า|This plan works better.
+bite|n|นับได้|คำ (อาหาร)|Grab a bite before the meeting.
+bite|v|+ กรรม|กัด|The dog does not bite.
+blend|n|นับได้|ส่วนผสม|The tea is a blend of herbs.
+blend|v|+ กรรม|ผสม|Blend the fruit with milk.
+block|n|นับได้|ช่วงถนน (ระหว่างสี่แยก)|The bank is two blocks away.
+block|v|+ กรรม|ปิดกั้น|Do not block the exit.
+break|n|นับได้|ช่วงพัก|Let's take a short break.
+break|v|+ กรรม / ไม่มีกรรม|ทำแตก; เสีย|The copier broke again.
+comment|n|นับได้|ความคิดเห็น|Please send your comments.
+comment|v|comment on|แสดงความคิดเห็น|The CEO declined to comment on the merger.
+charge|n|นับได้|ค่าธรรมเนียม (free of charge = ฟรี)|Delivery is free of charge.
+charge|v|+ กรรม|เรียกเก็บเงิน|We charge $5 for delivery.
+chronicle|n|นับได้|บันทึกเหตุการณ์|The book is a chronicle of the city.
+chronicle|v|+ กรรม|บันทึก (เหตุการณ์)|The film chronicles her career.
+click|v|click on|คลิก|Click on the link.
+click|n|นับได้|การคลิก|Buy it with one click.
+coach|n|นับได้ (คน) / รถ|โค้ช; รถโค้ช|The team hired a new coach.
+coach|v|+ กรรม|ฝึกสอน|She coaches new managers.
+commercial|adj|หน้านาม|ทางการค้า|The area is zoned for commercial use.
+commercial|n|นับได้|โฆษณา (ทีวี/วิทยุ)|The commercial aired during the game.
+complement|v|+ กรรม|ส่งเสริมกัน|The wine complements the meal.
+complement|n|นับได้|สิ่งที่เข้ากัน|The sauce is a perfect complement to fish.
+complex|n|นับได้|อาคารรวม|The office complex has a gym.
+complex|adj|หลัง be / หน้านาม|ซับซ้อน|The process is complex.
+concrete|n|นับไม่ได้|คอนกรีต|The floor is made of concrete.
+concrete|adj|หน้านาม|เป็นรูปธรรม|We need concrete plans.
+conduct|v|+ กรรม|ดำเนินการ (สำรวจ, ประชุม)|We will conduct a survey.
+conduct|n|นับไม่ได้|ความประพฤติ|The code of conduct applies to all staff.
+correct|adj|หลัง be / หน้านาม|ถูกต้อง|The address is correct.
+correct|v|+ กรรม|แก้ไข|Please correct the errors.
+courtesy|n|นับไม่ได้|ความสุภาพ|Thank you for your courtesy.
+courtesy|adj|หน้านาม|ฟรี (บริการเสริม)|A courtesy shuttle runs to the airport.
+cover|v|+ กรรม|ครอบคลุม; รับผิดชอบค่าใช้จ่าย|The warranty covers repairs.
+cover|n|นับได้|ปก; ฝา|The book cover is red.
+debut|n|นับได้|การเปิดตัวครั้งแรก|The car made its debut in Paris.
+debut|v|ไม่มีกรรม|เปิดตัวครั้งแรก|The new show debuts tonight.
+decrease|n|นับได้|การลดลง|There was a decrease in costs.
+decrease|v|ไม่มีกรรม / + กรรม|ลดลง|Sales decreased by 5 percent.
+demand|n|นับไม่ได้|ความต้องการ (ของตลาด)|Demand for the product is high.
+demand|v|+ กรรม|เรียกร้อง|Customers demand faster service.
+double|adj|หน้านาม|สองเท่า; คู่|We booked a double room.
+double|v|ไม่มีกรรม / + กรรม|เพิ่มเป็นสองเท่า|Sales doubled last year.
+east|n|นับไม่ได้|ทิศตะวันออก|The sun rises in the east.
+east|adj|หน้านาม|ทางทิศตะวันออก|Use the east exit.
+estimate|n|นับได้|การประเมิน, ใบเสนอราคา|Please send a cost estimate.
+estimate|v|+ กรรม|ประมาณการ|We estimate the cost at $500.
+exit|n|นับได้|ทางออก|The exit is on the left.
+exit|v|+ กรรม / ไม่มีกรรม|ออกจาก|Please exit through the rear door.
+far|adv|ขยายกริยา|ไกล|The hotel is not far from here.
+far|adj|หน้านาม|ไกล|The office is at the far end of the hall.
+fast|adj|หน้านาม / หลัง be|เร็ว|We offer fast delivery.
+fast|adv|ขยายกริยา|อย่างรวดเร็ว|The new printer works fast.
+function|n|นับได้|การใช้งาน; งานเลี้ยง|The hall is used for business functions.
+function|v|ไม่มีกรรม|ทำงาน|The machine is functioning normally.
+guarantee|n|นับได้|การรับประกัน|The product comes with a guarantee.
+guarantee|v|+ กรรม|รับประกัน|We guarantee delivery in two days.
+hard|adj|หลัง be|ยาก; แข็ง|The test was hard.
+hard|adv|ขยายกริยา|อย่างหนัก|The team worked hard.
+harvest|n|นับได้|การเก็บเกี่ยว|The apple harvest begins in fall.
+harvest|v|+ กรรม|เก็บเกี่ยว|Farmers harvest rice in November.
+hit|n|นับได้|สิ่งที่ประสบความสำเร็จ|The new menu is a big hit.
+hit|v|+ กรรม|ตี; ถึง (ระดับ)|Sales hit a record high.
+household|adj|หน้านาม|ใช้ในบ้าน|The store sells household goods.
+household|n|นับได้|ครัวเรือน|Every household received a survey.
+individual|n|นับได้ (คน)|บุคคล|The course is for individuals and groups.
+individual|adj|หน้านาม|เฉพาะแต่ละคน|We offer individual lessons.
+judge|n|นับได้ (คน)|ผู้ตัดสิน|The judges chose the winner.
+judge|v|+ กรรม|ตัดสิน|Entries will be judged on design.
+landscape|n|นับได้|ภูมิทัศน์|The landscape is beautiful.
+landscape|v|+ กรรม|จัดสวน, ตกแต่งภูมิทัศน์|The garden was landscaped last year.
+late|adj|หลัง be / หน้านาม|สาย, ล่าช้า|The train is late.
+late|adv|ขยายกริยา|สาย|She arrived late.
+lift|v|+ กรรม|ยก|Do not lift heavy boxes alone.
+lift|n|นับได้|ลิฟต์; การโดยสาร|Take the lift to the fifth floor.
+light|n|นับได้ / นับไม่ได้|ไฟ, แสง|Please turn off the lights.
+light|adj|หน้านาม / หลัง be|เบา; สว่าง|The laptop is light.
+like|v|+ กรรม|ชอบ (would like = ต้องการ)|We would like to thank you.
+like|prep|+ นาม|เหมือน, เช่น|Fruits like apples are on sale.
+likely|adj|be likely to + V|น่าจะ|Prices are likely to rise.
+likely|adv|most likely|น่าจะ|The meeting will most likely be canceled.
+limit|n|นับได้|ขีดจำกัด|There is a limit of two per customer.
+limit|v|+ กรรม|จำกัด|Seating is limited to 50 people.
+link|n|นับได้|ลิงก์; ความเชื่อมโยง|Click the link below.
+link|v|+ กรรม|เชื่อมโยง|The bridge links the two islands.
+list|n|นับได้|รายการ|Please see the price list.
+list|v|+ กรรม|ระบุเป็นรายการ|All fees are listed below.
+live|v|ไม่มีกรรม|อาศัยอยู่|She lives near the office.
+live|adj|หน้านาม|สด (ถ่ายทอดสด)|There will be live music.
+match|v|+ กรรม|เข้ากัน; ตรงกัน|The shoes match the dress.
+match|n|นับได้|การแข่งขัน|The final match is on Sunday.
+midyear|adj|หน้านาม|กลางปี|The midyear sale starts today.
+midyear|n|นับไม่ได้|ช่วงกลางปี|Reviews are done at midyear.
+monitor|v|+ กรรม|ติดตาม, เฝ้าดู|We monitor the system 24 hours a day.
+monitor|n|นับได้|จอภาพ|Each desk has two monitors.
+musical|adj|หน้านาม|ทางดนตรี|She plays three musical instruments.
+musical|n|นับได้|ละครเพลง|We saw a musical last night.
+nearby|adj|หน้านาม|ใกล้เคียง|We ate at a nearby café.
+nearby|adv|ขยายกริยา|แถวนี้|There are shops nearby.
+north|n|นับไม่ได้|ทิศเหนือ|The hotel is to the north.
+north|adj|หน้านาม|ทางทิศเหนือ|Use the north gate.
+net|adj|หน้านาม|สุทธิ|Net profit rose 10 percent.
+net|n|นับได้|ตาข่าย|The fishermen pulled in their nets.
+off|adv|ขยายกริยา|ลดราคา; ปิด|All items are 20 percent off.
+off|prep|+ นาม|ออกจาก|Please keep off the grass.
+official|adj|หน้านาม|เป็นทางการ|The official launch is in May.
+official|n|นับได้ (คน)|เจ้าหน้าที่|City officials attended the opening.
+own|v|+ กรรม|เป็นเจ้าของ|She owns two restaurants.
+own|adj|my/your own + นาม|ของตัวเอง|Each room has its own bathroom.
+park|n|นับได้|สวนสาธารณะ|The park is open until 6 P.M.
+park|v|ไม่มีกรรม / + กรรม|จอดรถ|You can park behind the building.
+plant|n|นับได้|โรงงาน; พืช|The firm built a new plant in Mexico.
+plant|v|+ กรรม|ปลูก|Volunteers planted 100 trees.
+plastic|n|นับไม่ได้|พลาสติก|The bottle is made of plastic.
+plastic|adj|หน้านาม|ทำจากพลาสติก|Please recycle plastic bags.
+post|v|+ กรรม|ติดประกาศ; โพสต์|The schedule is posted online.
+post|n|นับได้|ตำแหน่งงาน; โพสต์|She accepted a post in Paris.
+praise|n|นับไม่ได้|คำชม|The staff received praise for their work.
+praise|v|+ กรรม|ชมเชย|Critics praised the new film.
+press|n|the press|สื่อมวลชน|The CEO spoke to the press.
+press|v|+ กรรม|กด|Press the green button.
+produce|v|+ กรรม|ผลิต|The factory produces car parts.
+produce|n|นับไม่ได้|ผลิตผลการเกษตร (ผักผลไม้)|The market sells fresh produce.
+progress|n|นับไม่ได้|ความคืบหน้า|We are making good progress.
+progress|v|ไม่มีกรรม|คืบหน้า|The work is progressing well.
+rate|n|นับได้|อัตรา; ราคา|The hotel offers group rates.
+rate|v|+ กรรม|ให้คะแนน|Customers rated the service highly.
+recall|v|+ กรรม|เรียกคืน (สินค้า); นึกได้|The company recalled 1,000 cars.
+recall|n|นับได้|การเรียกคืนสินค้า|The recall affects older models.
+rental|n|นับได้|การเช่า; ของเช่า|Car rentals are available at the airport.
+rental|adj|หน้านาม|ที่ให้เช่า|We stayed in a rental apartment.
+repair|n|นับได้|การซ่อม|The road is closed for repairs.
+repair|v|+ กรรม|ซ่อม|A technician will repair the copier.
+respect|n|นับไม่ได้|ความเคารพ|Treat everyone with respect.
+respect|v|+ กรรม|เคารพ|We respect your privacy.
+retail|n|นับไม่ได้|การค้าปลีก|She works in retail.
+retail|adj|หน้านาม|ขายปลีก|The retail price is $50.
+round|adj|หน้านาม|ไปกลับ (round-trip); กลม|A round-trip ticket costs $200.
+round|n|นับได้|รอบ|The first round of interviews is today.
+secure|adj|หลัง be|ปลอดภัย|Online payments are secure.
+secure|v|+ กรรม|ได้มา (สัญญา, เงินทุน)|The firm secured a large contract.
+showcase|v|+ กรรม|จัดแสดง, โชว์|The fair showcases local products.
+showcase|n|นับได้|งานแสดง, เวทีแสดง|The festival is a showcase for new talent.
+sketch|n|นับได้|ภาพร่าง|The designer showed us some sketches.
+sketch|v|+ กรรม|ร่างภาพ|She sketched the new logo.
+so|conj|+ ประโยค|ดังนั้น|It was raining, so we stayed inside.
+so|adv|ขยาย adj|มาก|The staff were so helpful.
+sound|n|นับได้|เสียง|The sound quality is excellent.
+sound|v|+ adj / like|ฟังดูเหมือน|That sounds like a great idea.
+state|n|นับได้|รัฐ; สภาพ|The firm has offices in every state.
+state|v|+ กรรม / that|ระบุ|The contract states the price.
+stock|n|นับไม่ได้|สินค้าคงคลัง (in/out of stock)|The item is out of stock.
+stock|v|+ กรรม|มีสินค้าไว้ขาย|The store stocks organic food.
+store|n|นับได้|ร้านค้า|The store opens at 9.
+store|v|+ กรรม|เก็บ|Store the files in a safe place.
+study|n|นับได้|การศึกษา, งานวิจัย|A recent study shows rising demand.
+study|v|+ กรรม|เรียน, ศึกษา|She studied marketing.
+subject|n|นับได้|หัวข้อ|Please write the subject of your e-mail.
+subject|adj|be subject to|ขึ้นอยู่กับ, อาจมีการ|Prices are subject to change.
+suit|n|นับได้|ชุดสูท|He wore a dark suit.
+suit|v|+ กรรม|เหมาะกับ|The room suits large groups.
+though|conj|+ ประโยค|แม้ว่า|Though it was late, the shop was open.
+though|adv|ท้ายประโยค|อย่างไรก็ตาม|The hotel was nice. It was expensive, though.
+tidy|adj|หลัง be / keep + กรรม +|เรียบร้อย|Please keep your desk tidy.
+tidy|v|+ กรรม (tidy up)|จัดให้เรียบร้อย|Please tidy up the meeting room.
+till|prep|+ จุดเวลา|จนถึง|The store is open till 9 P.M.
+till|conj|+ ประโยค|จนกระทั่ง|Wait here till I come back.
+travel|v|ไม่มีกรรม|เดินทาง|She travels to Asia often.
+travel|n|นับไม่ได้|การเดินทาง|Travel expenses will be repaid.
+upgrade|v|+ กรรม|อัปเกรด|You can upgrade to a suite.
+upgrade|n|นับได้|การอัปเกรด|We offer a free upgrade.
+work|v|ไม่มีกรรม|ทำงาน; ใช้ได้|The new system works well.
+work|n|นับไม่ได้ (งาน) / นับได้ (ผลงาน)|งาน; ผลงาน|She has a lot of work today.
+yet|adv|ประโยคปฏิเสธ / คำถาม|ยัง|The results are not out yet.
+yet|conj|+ ประโยค|แต่|The hotel is small, yet comfortable.
+abstract|adj|หน้านาม|นามธรรม|The gallery shows abstract art.
+abstract|n|นับได้|บทคัดย่อ|Please submit an abstract of your paper.
+alternate|adj|หน้านาม|สำรอง; สลับ|Please suggest an alternate date.
+alternate|v|ไม่มีกรรม|สลับกัน|Staff alternate between day and night shifts.
+alternative|n|นับได้|ทางเลือก|Is there an alternative?
+alternative|adj|หน้านาม|ทางเลือกอื่น|We found an alternative route.
+amber|adj|หน้านาม|สีเหลืองอำพัน|The light turned amber.
+amber|n|นับไม่ได้|อำพัน|The necklace is made of amber.
+attempt|n|นับได้|ความพยายาม|This is our first attempt.
+attempt|v|attempt to + V|พยายาม|We attempted to call you.
+audio|adj|หน้านาม|เกี่ยวกับเสียง|The museum offers audio guides.
+audio|n|นับไม่ได้|เสียง|The audio was not clear.
+besides|prep|+ นาม|นอกจาก|Besides coffee, they sell tea.
+besides|adv|ขึ้นต้นประโยค|ยิ่งไปกว่านั้น|The hotel is cheap. Besides, it is near the beach.
+bill|n|นับได้|ใบแจ้งหนี้|Please pay the bill.
+bill|v|+ กรรม|เรียกเก็บเงิน|You will be billed monthly.
+blank|adj|หน้านาม|ว่างเปล่า|Leave the line blank.
+blank|n|นับได้|ช่องว่าง|Fill in the blanks.
+brief|adj|หน้านาม|สั้น, กระชับ|She gave a brief speech.
+brief|v|+ กรรม|สรุปให้ฟัง|The manager briefed the team.
+cast|n|นับได้|นักแสดงทั้งคณะ|The cast met fans after the show.
+cast|v|+ กรรม|คัดเลือกนักแสดง|She was cast in a new film.
+ceramic|adj|หน้านาม|ทำจากเซรามิก|The shop sells ceramic cups.
+ceramic|n|นับได้ (มักพหูพจน์)|เครื่องเซรามิก|The gallery displays ceramics.
+control|n|นับไม่ได้|การควบคุม|Quality control is important.
+control|v|+ กรรม|ควบคุม|You can control the lights with an app.
+cool|adj|หน้านาม / หลัง be|เย็น|Store in a cool place.
+cool|v|+ กรรม / ไม่มีกรรม|ทำให้เย็น|Let the cake cool.
+counsel|n|นับไม่ได้|ทนาย; คำปรึกษา|Our legal counsel reviewed it.
+counsel|v|+ กรรม|ให้คำปรึกษา|Advisors counsel students.
+crack|n|นับได้|รอยร้าว|There is a crack in the wall.
+crack|v|ไม่มีกรรม|ร้าว|The glass cracked.
+crash|n|นับได้|การขัดข้อง (ระบบ)|A system crash delayed orders.
+crash|v|ไม่มีกรรม|ระบบล่ม|The website crashed.
+credit|n|นับไม่ได้|เครดิต|We accept credit cards.
+credit|v|+ กรรม|โอนเข้าบัญชี; ให้เครดิต|The refund will be credited to your account.
+cycle|n|นับได้|วงจร, รอบ|The product cycle is short.
+cycle|v|ไม่มีกรรม|ปั่นจักรยาน|Many staff cycle to work.
+dive|v|ไม่มีกรรม|ดำน้ำ|Guests can dive near the reef.
+dive|n|นับได้|การดำน้ำ|The dive lasts an hour.
+dress|n|นับได้ / นับไม่ได้|ชุด; การแต่งกาย (dress code)|The dress code is formal.
+dress|v|ไม่มีกรรม|แต่งตัว|Please dress warmly.
+drink|n|นับได้|เครื่องดื่ม|Drinks are free.
+drink|v|+ กรรม|ดื่ม|Drink plenty of water.
+enough|adj|enough + นาม|เพียงพอ|We have enough chairs.
+enough|adv|adj + enough|อย่างเพียงพอ|The room is big enough.
+fall|v|ไม่มีกรรม|ลดลง; ตก|Prices fell in May.
+fall|n|นับได้|ฤดูใบไม้ร่วง; การลดลง|The store opens in the fall.
+file|n|นับได้|แฟ้ม, ไฟล์|Save the file.
+file|v|+ กรรม|ยื่น; เก็บเข้าแฟ้ม|Please file the reports.
+fine|adj|หลัง be|ดี, ใช้ได้|Monday is fine with me.
+fine|n|นับได้|ค่าปรับ|You will pay a fine for late return.
+fit|v|+ กรรม / ไม่มีกรรม|พอดี, ใส่ได้|The desk fits in the corner.
+fit|adj|หลัง be|ฟิต; เหมาะสม|Stay fit with our gym.
+flow|n|นับไม่ได้|การไหล|The design improves traffic flow.
+flow|v|ไม่มีกรรม|ไหล|The river flows into the sea.
+fun|n|นับไม่ได้|ความสนุก|The party was a lot of fun.
+fun|adj|หน้านาม|สนุก|We planned a fun event.
+further|adj|หน้านาม|เพิ่มเติม|For further details, call us.
+further|adv|ขยายกริยา|มากขึ้น, ต่อไป|We will discuss this further.
+future|n|นับไม่ได้|อนาคต|We plan to grow in the future.
+future|adj|หน้านาม|ในอนาคต|Keep the receipt for future use.
+gold|n|นับไม่ได้|ทองคำ|The ring is made of gold.
+gold|adj|หน้านาม|ทอง; ระดับทอง|Gold members get free shipping.
+guess|v|+ กรรม|เดา|Can you guess the price?
+guess|n|นับได้|การเดา|Make a guess.
+hourly|adj|หน้านาม|รายชั่วโมง|The hourly rate is $25.
+hourly|adv|ขยายกริยา|ทุกชั่วโมง|Buses leave hourly.
+house|n|นับได้|บ้าน|They bought a house.
+house|v|+ กรรม|เป็นที่ตั้งของ|The building houses three firms.
+hurry|v|ไม่มีกรรม|รีบ|Hurry, the sale ends today.
+hurry|n|in a hurry|ความรีบ|I'm in a hurry.
+issue|n|นับได้|ปัญหา; ฉบับ (นิตยสาร)|The issue will be discussed.
+issue|v|+ กรรม|ออก (เอกสาร, บัตร)|We will issue a refund.
+kind|n|นับได้|ประเภท|What kind of room do you need?
+kind|adj|หลัง be|ใจดี|Thank you for your kind words.
+lead|v|+ กรรม|นำ|She will lead the team.
+lead|n|นับได้|การนำ; ลูกค้าเป้าหมาย|Sales staff follow up on new leads.
+load|v|+ กรรม|บรรทุก|Workers are loading the truck.
+load|n|นับได้|สิ่งที่บรรทุก; ปริมาณงาน|The truck carries a heavy load.
+manufacture|v|+ กรรม|ผลิต|We manufacture car parts.
+manufacture|n|นับไม่ได้|การผลิต|The manufacture of the parts takes a week.
+measure|v|+ กรรม|วัด|Measure the room before you buy.
+measure|n|นับได้|มาตรการ|New safety measures are in place.
+medium|adj|หน้านาม|ขนาดกลาง|I'd like a medium coffee.
+medium|n|นับได้|สื่อ|TV is a popular advertising medium.
+middle|n|นับได้|ตรงกลาง|The store is in the middle of town.
+middle|adj|หน้านาม|ตรงกลาง|Take the middle seat.
+near|prep|+ นาม|ใกล้|The hotel is near the station.
+near|adj|หน้านาม|ใกล้ (in the near future)|We will open more stores in the near future.
+outside|prep|+ นาม|ข้างนอก|Please wait outside the room.
+outside|adv|ขยายกริยา|ข้างนอก|Let's eat outside.
+paint|v|+ กรรม|ทาสี|The walls will be painted.
+paint|n|นับไม่ได้|สี (ทา)|The paint is still wet.
+photograph|n|นับได้|รูปถ่าย|Attach a recent photograph.
+photograph|v|+ กรรม|ถ่ายรูป|Please do not photograph the art.
+premium|adj|หน้านาม|ระดับพรีเมียม|Premium members get free delivery.
+premium|n|นับได้|เบี้ยประกัน; ราคาเพิ่ม|Insurance premiums rose.
+promise|v|+ กรรม / to + V|สัญญา|We promise fast delivery.
+promise|n|นับได้|คำสัญญา|We keep our promises.
+prompt|adj|หน้านาม|รวดเร็ว|Thank you for your prompt reply.
+prompt|v|+ กรรม|กระตุ้น, ทำให้เกิด|The delay prompted complaints.
+range|n|นับได้|ช่วง; กลุ่มสินค้า|We sell a wide range of products.
+range|v|range from A to B|มีตั้งแต่...ถึง|Prices range from $10 to $50.
+rest|n|the rest|ส่วนที่เหลือ|The rest of the team will join later.
+rest|v|ไม่มีกรรม|พักผ่อน|Please rest before the trip.
+reward|n|นับได้|รางวัล|Members earn rewards.
+reward|v|+ กรรม|ให้รางวัล|We reward loyal customers.
+stay|v|ไม่มีกรรม|พัก, อยู่|We stayed at a nice hotel.
+stay|n|นับได้|การเข้าพัก|Enjoy your stay.
+substitute|n|นับได้|สิ่งทดแทน; ตัวแทน|There is no substitute for experience.
+substitute|v|substitute A for B|ใช้แทน|You may substitute rice for fries.
+switch|v|switch to|เปลี่ยน|We switched to a new supplier.
+switch|n|นับได้|สวิตช์|The light switch is by the door.
+track|v|+ กรรม|ติดตาม|Track your order online.
+track|n|นับได้|ราง; ลู่|The train left the track.
+transfer|v|+ กรรม / ไม่มีกรรม|ย้าย, โอน|She was transferred to Paris.
+transfer|n|นับได้|การโอน, การย้าย|Bank transfers take two days.
+transport|v|+ กรรม|ขนส่ง|The goods are transported by ship.
+transport|n|นับไม่ได้|การขนส่ง|Public transport is cheap here.
+turn|v|+ กรรม / ไม่มีกรรม|เลี้ยว; หมุน; เปิด/ปิด|Please turn off the lights.
+turn|n|นับได้|ตาของ (ถึงคิว)|Please wait your turn.
+type|n|นับได้|ประเภท|What type of room do you want?
+type|v|+ กรรม|พิมพ์|Please type your name.
+value|n|นับไม่ได้ / นับได้|คุณค่า, มูลค่า|The value of the house has risen.
+value|v|+ กรรม|ให้ความสำคัญ|We value your feedback.
+launch|v|+ กรรม|เปิดตัว|We will launch a new app.
+launch|n|นับได้|การเปิดตัว|The launch is set for May.
+auto|adj|หน้านาม|เกี่ยวกับรถยนต์|He works at an auto repair shop.
+auto|n|นับได้|รถยนต์ (ภาษาพูด)|The auto show opens on Friday.
+walk|v|ไม่มีกรรม|เดิน|I walk to work every day.
+walk|n|นับได้|การเดิน; ระยะเดิน|The beach is a short walk away.
+waste|n|นับไม่ได้|ขยะ; การสิ้นเปลือง|The plan will reduce waste.
+waste|v|+ กรรม|เสีย (เวลา, เงิน) เปล่า|Don't waste paper.
+wholesale|adj|หน้านาม|ขายส่ง|We sell at wholesale prices.
+wholesale|n|นับไม่ได้|การขายส่ง|The firm works in wholesale.
+yesterday|adv|ขยายกริยา|เมื่อวาน|The package arrived yesterday.
+yesterday|n|นับไม่ได้|วันเมื่อวาน|Yesterday's meeting went well.
+above|prep|+ นาม|เหนือ, สูงกว่า|Sales were above our target.
+above|adv|ขยายกริยา|ข้างบน|Please see the address above.
+appeal|v|appeal to|ดึงดูดใจ|The menu appeals to young people.
+appeal|n|นับไม่ได้ / นับได้|ความน่าดึงดูด; การอุทธรณ์|The product has wide appeal.
+breed|n|นับได้|สายพันธุ์|The farm raises a rare breed of cattle.
+breed|v|+ กรรม|เพาะพันธุ์|They breed horses.
+favorite|adj|หน้านาม|ที่ชื่นชอบ|This is my favorite café.
+favorite|n|นับได้|สิ่งที่ชื่นชอบ|The soup is a customer favorite.
+grant|n|นับได้|เงินทุนสนับสนุน|The museum received a grant.
+grant|v|+ กรรม|ให้, อนุมัติ|The city granted the permit.
+heat|n|นับไม่ได้|ความร้อน|The heat was turned off.
+heat|v|+ กรรม|ทำให้ร้อน, อุ่น|Heat the soup for two minutes.
+interior|n|นับได้|ด้านใน|The interior was renovated.
+interior|adj|หน้านาม|ภายใน|She is an interior designer.
+novel|n|นับได้|นวนิยาย|Her new novel is a best seller.
+novel|adj|หน้านาม|แปลกใหม่|They came up with a novel idea.
+objective|n|นับได้|วัตถุประสงค์|Our main objective is to cut costs.
+objective|adj|หลัง be / หน้านาม|เป็นกลาง|Please give an objective opinion.
+outline|n|นับได้|โครงร่าง|Send me an outline of the plan.
+outline|v|+ กรรม|สรุปโครงร่าง|The memo outlines the new rules.
+pass|v|+ กรรม|ผ่าน; ส่งต่อ|She passed the exam.
+pass|n|นับได้|บัตรผ่าน|Visitors must wear a pass.
+play|v|+ กรรม / ไม่มีกรรม|เล่น; มีบทบาท (play a role)|She plays a key role in the team.
+play|n|นับได้|ละครเวที|The play opens next week.
+power|n|นับไม่ได้|พลังงาน; ไฟฟ้า|The power went out.
+power|v|+ กรรม|ให้พลังงาน|The building is powered by solar energy.
+routine|n|นับได้|กิจวัตร|Exercise is part of my routine.
+routine|adj|หน้านาม|ตามปกติ, ประจำ|The machines get routine checks.
+search|v|search for|ค้นหา|Search for flights online.
+search|n|นับได้|การค้นหา|The search for a new manager continues.
+senior|adj|หน้านาม|อาวุโส|She is a senior manager.
+senior|n|นับได้ (คน)|ผู้สูงอายุ|Seniors get a discount.
+separate|adj|หน้านาม|แยกกัน|Use a separate sheet.
+separate|v|+ กรรม|แยก|Please separate glass from plastic.
+smile|v|ไม่มีกรรม|ยิ้ม|The staff always smile at guests.
+smile|n|นับได้|รอยยิ้ม|Greet customers with a smile.
+stop|v|+ กรรม / ไม่มีกรรม|หยุด|The bus stops here.
+stop|n|นับได้|ป้ายรถ; จุดแวะ|The bus stop is outside.
+tire|n|นับได้|ยางรถ|Check the tires before the trip.
+tire|v|+ กรรม / ไม่มีกรรม|ทำให้เหนื่อย|Long meetings tire everyone.
+tonight|adv|ขยายกริยา|คืนนี้|The show starts tonight.
+tonight|n|นับไม่ได้|คืนนี้|Tonight's dinner is at 7.
+touring|adj|หน้านาม|ที่ตระเวนแสดง|The museum hosts touring exhibitions.
+touring|n|นับไม่ได้|การท่องเที่ยว|Bike touring is popular here.
+treat|v|+ กรรม|ปฏิบัติต่อ; เลี้ยง|We treat every guest with care.
+treat|n|นับได้|ของอร่อย, การเลี้ยง|Lunch is my treat.
