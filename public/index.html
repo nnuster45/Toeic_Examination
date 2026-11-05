@@ -674,13 +674,14 @@ function renderDock() {
       const inP = c.x.p.includes(k), was = c.ans.pos.includes(k);
       return inP && was ? "right" : was ? "wrong" : inP ? "missed" : "dim";
     };
-    d.innerHTML = `<div class="ask"><b>คำนี้เป็นคำประเภทไหน?</b><small>เลือกได้หลายข้อ · 1–7</small></div>
+    const multi = c.x.p.length > 1;
+    d.innerHTML = `<div class="ask"><b>${multi ? "คำนี้เป็นได้หลายประเภท เลือกให้ครบ" : "คำนี้เป็นคำประเภทไหน?"}</b><small>${multi ? "เลือกหลายข้อ · Enter" : "1–7"}</small></div>
       <div class="posgrid">${POS.map(p => `<button class="opt ${cls(p.k)}" data-t="${p.k}" aria-pressed="${sel.includes(p.k)}" ${answered ? "disabled" : ""}>
         <span class="ab">${p.k}.</span><small>${p.th}</small></button>`).join("")}</div>
       ${answered ? (isRight(c, "pos") ? "" : `<p class="posnote">ที่ถูกคือ ${c.x.p.map(k => POSMAP[k].en).join(" + ")}</p>`)
-        : `<button class="btn wide" id="checkpos" ${sel.length ? "" : "disabled"}>ตรวจคำตอบ <kbd>Enter</kbd></button>`}`;
+        : multi ? `<button class="btn wide" id="checkpos" ${sel.length ? "" : "disabled"}>ตรวจคำตอบ <kbd>Enter</kbd></button>` : ""}`;
     d.querySelectorAll("[data-t]").forEach(b => b.onclick = () => togglePos(b.dataset.t));
-    if (!answered) $("#checkpos").onclick = () => answer([...sel]);
+    if (!answered && multi) $("#checkpos").onclick = () => answer([...sel]);
     return;
   } else {
     const list = c.choices[step];
@@ -693,6 +694,7 @@ function renderDock() {
 
 function togglePos(k) {
   const c = cur(); if (!c || c.done || c.locked || c.steps[c.si] !== "pos") return;
+  if (c.x.p.length === 1) { answer([k]); return; } // one part of speech: a tap answers straight away
   const sel = c.sel || (c.sel = []);
   const i = sel.indexOf(k); i >= 0 ? sel.splice(i, 1) : sel.push(k);
   renderDock();
